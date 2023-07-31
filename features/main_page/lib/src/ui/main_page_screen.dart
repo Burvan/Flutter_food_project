@@ -14,7 +14,7 @@ class MainPageScreen extends StatelessWidget {
       create: (_) => MainPageBloc(
         fetchDishesUseCase: appLocator.get<FetchDishesUseCase>(),
       ),
-      child: /*const*/ _MainPage(),
+      child: _MainPage(),
     );
   }
 }
@@ -26,8 +26,6 @@ class _MainPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final MainPageBloc bloc = context.read<MainPageBloc>();
-
     return BlocBuilder<MainPageBloc, MainPageState>(
       builder: (context, state) {
         if (state.isLoading) {
@@ -70,7 +68,7 @@ class _MainPage extends StatelessWidget {
                           ),
                         )
                         .toList(),
-                    onTap: (int index) => bloc.add(
+                    onTap: (int index) => context.read<MainPageBloc>().add(
                       ChangeCurrentDishes(
                         category: _menuTabs[index].categoryName,
                       ),

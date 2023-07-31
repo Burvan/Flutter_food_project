@@ -6,7 +6,10 @@ import 'package:core_ui/core_ui.dart';
 class DishTile extends StatelessWidget {
   final Dish dish;
 
-  const DishTile({Key? key, required this.dish}) : super(key: key);
+  const DishTile({
+    Key? key,
+    required this.dish,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -61,13 +64,6 @@ class DishTile extends StatelessWidget {
                   textAlign: TextAlign.center,
                 ),
                 const SizedBox(height: 5),
-                // Text(
-                //   dish.description,
-                //   maxLines: 2,
-                //   style: const TextStyle(
-                //     fontSize: 14,
-                //   ),
-                // ),
                 const Spacer(),
                 Padding(
                   padding: const EdgeInsets.only(bottom: 5),
@@ -80,11 +76,11 @@ class DishTile extends StatelessWidget {
                           backgroundColor: const MaterialStatePropertyAll(
                             AppColors.bright_pink,
                           ),
-                            shape: MaterialStatePropertyAll(
-                                RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(18.0),
-                                ),
+                          shape: MaterialStatePropertyAll(
+                            RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(18.0),
                             ),
+                          ),
                         ),
                         child: const Text('+Add'),
                       )

@@ -20,7 +20,6 @@ class MenuTab extends StatelessWidget {
         ),
         child: Image.asset(
           iconPath,
-          //color: Colors.grey[600],
         ),
       ),
     );
