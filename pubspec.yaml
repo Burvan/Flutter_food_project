@@ -21,7 +21,11 @@ dependencies:
   navigation:
     path: navigation
   main_page:
-    path: features/main_page
+    path: features/home
+  settings:
+    path: features/settings
+  cart:
+    path: features/cart
 
 
 

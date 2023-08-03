@@ -36,6 +36,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.0"
+  cart:
+    dependency: transitive
+    description:
+      path: "../features/cart"
+      relative: true
+    source: path
+    version: "0.0.1"
   characters:
     dependency: transitive
     description:
@@ -187,7 +194,7 @@ packages:
   main_page:
     dependency: transitive
     description:
-      path: "../features/main_page"
+      path: "../features/home"
       relative: true
     source: path
     version: "0.0.1"
@@ -226,6 +233,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.0"
+  order_history:
+    dependency: transitive
+    description:
+      path: "../features/order_history"
+      relative: true
+    source: path
+    version: "0.0.1"
   path:
     dependency: transitive
     description:
@@ -247,6 +261,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "6.0.5"
+  settings:
+    dependency: transitive
+    description:
+      path: "../features/settings"
+      relative: true
+    source: path
+    version: "0.0.1"
   sky_engine:
     dependency: transitive
     description: flutter
