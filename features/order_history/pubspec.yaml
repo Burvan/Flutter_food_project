@@ -1,4 +1,4 @@
-name: core_ui
+name: order_history
 description: A new Flutter package project.
 version: 0.0.1
 homepage:
@@ -10,20 +10,20 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+
   core:
-    path: ../core
+    path: ../../core
   domain:
-    path: ../domain
+    path: ../../domain
+  core_ui:
+    path: ../../core_ui
   navigation:
-    path: ../navigation
-  settings:
-    path: ../features/settings
+    path: ../../navigation
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^2.0.0
-
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

@@ -1,7 +1,5 @@
-import 'package:core_ui/src/theme/app_colors.dart';
 import 'package:domain/models/dishes/dish.dart';
 import 'package:flutter/material.dart';
-import 'package:core_ui/core_ui.dart';
 
 class DishTile extends StatelessWidget {
   final Dish dish;
@@ -13,10 +11,12 @@ class DishTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final ThemeData themeData = Theme.of(context);
+
     return Container(
       margin: const EdgeInsets.all(12.0),
       decoration: BoxDecoration(
-        color: AppColors.light_pink,
+        color: themeData.cardColor,
         borderRadius: BorderRadius.circular(12),
       ),
       child: Column(
@@ -26,9 +26,9 @@ class DishTile extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
               Container(
-                decoration: const BoxDecoration(
-                  color: AppColors.pink_sherbet,
-                  borderRadius: BorderRadius.only(
+                decoration: BoxDecoration(
+                  color: themeData.secondaryHeaderColor,
+                  borderRadius: const BorderRadius.only(
                     bottomLeft: Radius.circular(12),
                     topRight: Radius.circular(12),
                   ),
@@ -36,8 +36,8 @@ class DishTile extends StatelessWidget {
                 padding: const EdgeInsets.all(12),
                 child: Text(
                   '${dish.cost} BYN',
-                  style: const TextStyle(
-                    color: AppColors.bright_pink,
+                  style: TextStyle(
+                    color: themeData.primaryColor,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -73,9 +73,6 @@ class DishTile extends StatelessWidget {
                       ElevatedButton(
                         onPressed: () {},
                         style: ButtonStyle(
-                          backgroundColor: const MaterialStatePropertyAll(
-                            AppColors.bright_pink,
-                          ),
                           shape: MaterialStatePropertyAll(
                             RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(18.0),

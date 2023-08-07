@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:navigation/navigation.dart';
 import 'package:core_ui/core_ui.dart';
-import 'package:core_ui/src/theme/app_colors.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -17,7 +16,9 @@ class HomePage extends StatelessWidget {
         ],
       appBarBuilder: (context, tabsRouter){
           return AppBar(
-              backgroundColor: AppColors.gently_pink,
+            actions: const [
+              ThemeSwitcher(),
+            ],
               title: const Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
