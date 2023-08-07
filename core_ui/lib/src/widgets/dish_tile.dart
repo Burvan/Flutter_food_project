@@ -21,7 +21,16 @@ class DishTile extends StatelessWidget {
       child: Stack(
         children: [
           Container(
+            clipBehavior: Clip.hardEdge,
             decoration: BoxDecoration(
+              border: Border.all(color: themeData.secondaryHeaderColor),
+              boxShadow: [
+                BoxShadow(
+                  blurRadius: 7,
+                  color: themeData.primaryColor.withOpacity(0.6),
+                  offset: const Offset(0, 2)
+                )
+              ],
               color: themeData.cardColor,
               borderRadius: BorderRadius.circular(12),
             ),
