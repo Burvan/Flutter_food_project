@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
 import 'package:main_page/home.dart';
 import 'package:cart/cart.dart';
@@ -19,6 +20,9 @@ part 'app_router.gr.dart';
         AutoRoute(page: SettingsScreen),
       ],
     ),
+    AutoRoute(
+      page: DetailedDishScreen,
+    )
   ],
 )
 class AppRouter extends _$AppRouter {}

@@ -6,6 +6,7 @@ class AppTheme {
     return ThemeData(
         primaryColor: AppColors.brightPink,
         canvasColor: AppColors.white,
+        brightness: Brightness.light,
         appBarTheme: const AppBarTheme(
           backgroundColor: AppColors.gentlyPink,
         ),
@@ -28,7 +29,8 @@ class AppTheme {
 
   static ThemeData get darkTheme {
     return ThemeData(
-        primaryColor: AppColors.indigo,
+        primaryColor: AppColors.white,
+        brightness: Brightness.dark,
         canvasColor: AppColors.black,
         secondaryHeaderColor: AppColors.lightGrey  ,
         appBarTheme: const AppBarTheme(backgroundColor: AppColors.indigo),
@@ -37,8 +39,8 @@ class AppTheme {
         ),
         cardColor: AppColors.darkGrey,
         textTheme: const TextTheme(
-          bodyText1: TextStyle(color: AppColors.white),
-            //bodyLarge: TextStyle(color: AppColors.white)
+          //bodyText1: TextStyle(color: AppColors.white),
+            bodyLarge: TextStyle(color: AppColors.white),
         ),
 
         elevatedButtonTheme: const ElevatedButtonThemeData(

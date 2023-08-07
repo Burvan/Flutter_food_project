@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:main_page/src/bloc/main_page_bloc.dart';
 import 'package:main_page/src/enums/menu_tab_enum.dart';
 import 'package:main_page/src/ui/menu_tab.dart';
+import 'package:navigation/navigation.dart';
 
 class HomeScreen extends StatelessWidget {
   @override
@@ -73,6 +74,13 @@ class _HomeScreen extends StatelessWidget {
                       itemBuilder: (context, index) {
                         return DishTile(
                           dish: state.currentDishes[index],
+                          onTap: (){
+                            context.navigateTo(
+                              DetailedDishScreenRoute(
+                                  dish: state.currentDishes[index],
+                              ),
+                            );
+                          },
                         );
                       },
                     ),

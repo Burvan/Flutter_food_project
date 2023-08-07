@@ -7,6 +7,7 @@ class DishEntity {
   final double cost;
   final String name;
   final String description;
+  final List<String>? ingredients;
 
   DishEntity({
     required this.id,
@@ -15,6 +16,7 @@ class DishEntity {
     required this.cost,
     required this.name,
     required this.description,
+    this.ingredients,
   });
 
   factory DishEntity.fromJson(Map<String, dynamic> json){
@@ -25,6 +27,7 @@ class DishEntity {
       description: json['description'] as String,
       id: json['id'] as int,
       imagePath: json['imagePath'] as String,
+      ingredients: List<String>.from(json['ingredients'] ?? []),
     );
   }
 }
