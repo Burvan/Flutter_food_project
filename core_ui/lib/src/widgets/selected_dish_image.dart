@@ -1,3 +1,4 @@
+import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
 
 class SelectedDishImage extends StatelessWidget {
@@ -15,7 +16,7 @@ class SelectedDishImage extends StatelessWidget {
       tag: imagePath,
       child: Image.network(
         imagePath,
-        height: mediaQueryData.size.height * 0.3,
+        height: mediaQueryData.size.height * AppMultiplier.multiplier,
       ),
     );
   }

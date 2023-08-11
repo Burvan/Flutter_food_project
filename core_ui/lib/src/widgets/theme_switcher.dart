@@ -14,7 +14,7 @@ class ThemeSwitcher extends StatelessWidget {
           activeColor: AppColors.darkGrey,
           activeTrackColor: AppColors.white,
           value: state.isDark,
-          onChanged: (value) {
+          onChanged: (bool value) {
             BlocProvider.of<SettingsBloc>(context).add(
               ChangeThemeEvent(),
             );

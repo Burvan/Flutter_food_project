@@ -8,37 +8,37 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AutoTabsScaffold(
-        routes: const [
-          HomeScreenRoute(),
-          CartScreenRoute(),
-          OrderHistoryScreenRoute(),
-          SettingsScreenRoute(),
-        ],
-      appBarBuilder: (context, tabsRouter){
-          return AppBar(
-            actions: const [
-              ThemeSwitcher(),
-            ],
-              title: const Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Text(
-                    'Nice',
-                    style: TextStyle(
-                      fontSize: 32,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  Text(' food delivery', style: TextStyle(fontSize: 24)),
-                ],
+      routes: const [
+        HomeScreenRoute(),
+        CartScreenRoute(),
+        OrderHistoryScreenRoute(),
+        SettingsScreenRoute(),
+      ],
+      appBarBuilder: (context, tabsRouter) {
+        return AppBar(
+          actions: const [
+            ThemeSwitcher(),
+          ],
+          title: const Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Text(
+                'Nice',
+                style: AppTextTheme.font32Bold,
               ),
-          );
+              Text(
+                ' food delivery',
+                style: AppTextTheme.font24,
+              ),
+            ],
+          ),
+        );
       },
-      bottomNavigationBuilder: (BuildContext context, TabsRouter tabsRouter){
-          return AppBottomNavigationBar(
-              currentIndex: tabsRouter.activeIndex,
-              onTap: tabsRouter.setActiveIndex,
-          );
+      bottomNavigationBuilder: (BuildContext context, TabsRouter tabsRouter) {
+        return AppBottomNavigationBar(
+          currentIndex: tabsRouter.activeIndex,
+          onTap: tabsRouter.setActiveIndex,
+        );
       },
     );
   }

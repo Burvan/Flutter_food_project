@@ -1,3 +1,5 @@
+import 'package:core_ui/core_ui.dart';
+import 'package:core_ui/src/theme/app_dimensions.dart';
 import 'package:core_ui/src/widgets/menu_dish_image.dart';
 import 'package:domain/models/dishes/dish.dart';
 import 'package:flutter/material.dart';
@@ -17,7 +19,7 @@ class DishTile extends StatelessWidget {
     final ThemeData themeData = Theme.of(context);
 
     return Padding(
-      padding: const EdgeInsets.all(12.0),
+      padding: const EdgeInsets.all(AppPadding.padding12),
       child: Stack(
         children: [
           Container(
@@ -28,32 +30,36 @@ class DishTile extends StatelessWidget {
                 BoxShadow(
                   blurRadius: 7,
                   color: themeData.primaryColor.withOpacity(0.6),
-                  offset: const Offset(0, 2)
-                )
+                  offset: const Offset(0, 2),
+                ),
               ],
               color: themeData.cardColor,
-              borderRadius: BorderRadius.circular(12),
+              borderRadius:
+                  BorderRadius.circular(AppBorderRadius.borderRadius12),
             ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
                 Row(
                   mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
+                  children: <Widget>[
                     Container(
                       decoration: BoxDecoration(
                         color: themeData.secondaryHeaderColor,
                         borderRadius: const BorderRadius.only(
-                          bottomLeft: Radius.circular(12),
-                          topRight: Radius.circular(12),
+                          bottomLeft: Radius.circular(
+                            AppBorderRadius.borderRadius12,
+                          ),
+                          topRight: Radius.circular(
+                            AppBorderRadius.borderRadius12,
+                          ),
                         ),
                       ),
-                      padding: const EdgeInsets.all(12),
+                      padding: const EdgeInsets.all(AppPadding.padding12),
                       child: Text(
                         '${dish.cost} BYN',
-                        style: TextStyle(
+                        style: AppTextTheme.font14Bold.copyWith(
                           color: themeData.primaryColor,
-                          fontWeight: FontWeight.bold,
                         ),
                       ),
                     )
@@ -64,25 +70,24 @@ class DishTile extends StatelessWidget {
                     children: <Widget>[
                       Padding(
                         padding: const EdgeInsets.symmetric(
-                            horizontal: 24, vertical: 12,),
-                        child: MenuDishImage(imagePath: dish.imagePath),
-                        // child: Image.network(
-                        //   dish.imagePath,
-                        //   height: 100,
-                        // ),
+                          horizontal: AppPadding.padding24,
+                          vertical: AppPadding.padding12,
+                        ),
+                        child: MenuDishImage(
+                          imagePath: dish.imagePath,
+                        ),
                       ),
                       Text(
                         dish.name,
-                        style: const TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 18,
-                        ),
+                        style: AppTextTheme.font18Bold,
                         textAlign: TextAlign.center,
                       ),
-                      const SizedBox(height: 5),
+                      const SizedBox(height: AppSize.size5),
                       const Spacer(),
                       Padding(
-                        padding: const EdgeInsets.only(bottom: 5),
+                        padding: const EdgeInsets.only(
+                          bottom: AppPadding.padding5,
+                        ),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
@@ -91,7 +96,9 @@ class DishTile extends StatelessWidget {
                               style: ButtonStyle(
                                 shape: MaterialStatePropertyAll(
                                   RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(18.0),
+                                    borderRadius: BorderRadius.circular(
+                                      AppBorderRadius.borderRadius18,
+                                    ),
                                   ),
                                 ),
                               ),
@@ -109,7 +116,8 @@ class DishTile extends StatelessWidget {
           Material(
             color: Colors.transparent,
             child: InkWell(
-              borderRadius: BorderRadius.circular(12),
+              borderRadius:
+                  BorderRadius.circular(AppBorderRadius.borderRadius12),
               onTap: onTap,
             ),
           ),
