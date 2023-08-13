@@ -1,93 +1,124 @@
-import 'package:core_ui/src/theme/app_colors.dart';
+import 'package:core_ui/core_ui.dart';
+import 'package:core_ui/src/theme/app_dimensions.dart';
+import 'package:core_ui/src/widgets/menu_dish_image.dart';
 import 'package:domain/models/dishes/dish.dart';
 import 'package:flutter/material.dart';
-import 'package:core_ui/core_ui.dart';
 
 class DishTile extends StatelessWidget {
   final Dish dish;
+  final VoidCallback onTap;
 
   const DishTile({
     Key? key,
     required this.dish,
+    required this.onTap,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.all(12.0),
-      decoration: BoxDecoration(
-        color: AppColors.light_pink,
-        borderRadius: BorderRadius.circular(12),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: <Widget>[
-          Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              Container(
-                decoration: const BoxDecoration(
-                  color: AppColors.pink_sherbet,
-                  borderRadius: BorderRadius.only(
-                    bottomLeft: Radius.circular(12),
-                    topRight: Radius.circular(12),
-                  ),
+    final ThemeData themeData = Theme.of(context);
+
+    return Padding(
+      padding: const EdgeInsets.all(AppPadding.padding12),
+      child: Stack(
+        children: [
+          Container(
+            clipBehavior: Clip.hardEdge,
+            decoration: BoxDecoration(
+              border: Border.all(color: themeData.secondaryHeaderColor),
+              boxShadow: [
+                BoxShadow(
+                  blurRadius: 7,
+                  color: themeData.primaryColor.withOpacity(0.6),
+                  offset: const Offset(0, 2),
                 ),
-                padding: const EdgeInsets.all(12),
-                child: Text(
-                  '${dish.cost} BYN',
-                  style: const TextStyle(
-                    color: AppColors.bright_pink,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              )
-            ],
-          ),
-          Expanded(
+              ],
+              color: themeData.cardColor,
+              borderRadius:
+                  BorderRadius.circular(AppBorderRadius.borderRadius12),
+            ),
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
-                Padding(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
-                  child: Image.network(
-                    dish.imagePath,
-                    height: 100,
-                  ),
-                ),
-                Text(
-                  dish.name,
-                  style: const TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 18,
-                  ),
-                  textAlign: TextAlign.center,
-                ),
-                const SizedBox(height: 5),
-                const Spacer(),
-                Padding(
-                  padding: const EdgeInsets.only(bottom: 5),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      ElevatedButton(
-                        onPressed: () {},
-                        style: ButtonStyle(
-                          backgroundColor: const MaterialStatePropertyAll(
-                            AppColors.bright_pink,
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: <Widget>[
+                    Container(
+                      decoration: BoxDecoration(
+                        color: themeData.secondaryHeaderColor,
+                        borderRadius: const BorderRadius.only(
+                          bottomLeft: Radius.circular(
+                            AppBorderRadius.borderRadius12,
                           ),
-                          shape: MaterialStatePropertyAll(
-                            RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(18.0),
-                            ),
+                          topRight: Radius.circular(
+                            AppBorderRadius.borderRadius12,
                           ),
                         ),
-                        child: const Text('+Add'),
-                      )
+                      ),
+                      padding: const EdgeInsets.all(AppPadding.padding12),
+                      child: Text(
+                        '${dish.cost} BYN',
+                        style: AppTextTheme.font14Bold.copyWith(
+                          color: themeData.primaryColor,
+                        ),
+                      ),
+                    )
+                  ],
+                ),
+                Expanded(
+                  child: Column(
+                    children: <Widget>[
+                      Padding(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: AppPadding.padding24,
+                          vertical: AppPadding.padding12,
+                        ),
+                        child: MenuDishImage(
+                          imagePath: dish.imagePath,
+                        ),
+                      ),
+                      Text(
+                        dish.name,
+                        style: AppTextTheme.font18Bold,
+                        textAlign: TextAlign.center,
+                      ),
+                      const SizedBox(height: AppSize.size5),
+                      const Spacer(),
+                      Padding(
+                        padding: const EdgeInsets.only(
+                          bottom: AppPadding.padding5,
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            ElevatedButton(
+                              onPressed: () {},
+                              style: ButtonStyle(
+                                shape: MaterialStatePropertyAll(
+                                  RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(
+                                      AppBorderRadius.borderRadius18,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              child: const Text('+Add'),
+                            )
+                          ],
+                        ),
+                      ),
                     ],
                   ),
                 ),
               ],
+            ),
+          ),
+          Material(
+            color: Colors.transparent,
+            child: InkWell(
+              borderRadius:
+                  BorderRadius.circular(AppBorderRadius.borderRadius12),
+              onTap: onTap,
             ),
           ),
         ],

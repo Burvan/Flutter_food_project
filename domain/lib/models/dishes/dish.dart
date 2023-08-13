@@ -5,6 +5,7 @@ class Dish {
   final double cost;
   final String name;
   final String description;
+  final List<String>? ingredients;
 
   Dish({
     required this.id,
@@ -13,5 +14,6 @@ class Dish {
     required this.cost,
     required this.name,
     required this.description,
+    this.ingredients,
   });
 }

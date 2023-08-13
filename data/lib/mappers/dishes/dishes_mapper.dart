@@ -10,6 +10,7 @@ class DishesMapper extends Mapper<DishEntity, domain.Dish> {
       cost: entity.cost,
       name: entity.name,
       description: entity.description,
+      ingredients: entity.ingredients,
     );
   }
 
@@ -22,6 +23,7 @@ class DishesMapper extends Mapper<DishEntity, domain.Dish> {
       cost: item.cost,
       name: item.name,
       description: item.description,
+      ingredients: item.ingredients,
     );
   }
 }
