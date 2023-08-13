@@ -1,3 +1,4 @@
+import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
 
 class MenuTab extends StatelessWidget {
@@ -11,12 +12,14 @@ class MenuTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Tab(
-      height: 80,
+      height: AppSize.size80,
       child: Container(
-        padding: const EdgeInsets.all(12),
+        padding: const EdgeInsets.all(AppPadding.padding12),
         decoration: BoxDecoration(
-          color: Colors.grey[200],
-          borderRadius: BorderRadius.circular(12),
+          color: AppColors.grey,
+          borderRadius: BorderRadius.circular(
+            AppBorderRadius.borderRadius12,
+          ),
         ),
         child: Image.asset(
           iconPath,

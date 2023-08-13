@@ -46,7 +46,9 @@ class _HomeScreen extends StatelessWidget {
               body: Column(
                 children: <Widget>[
                   TabBar(
-                    padding: const EdgeInsets.only(top: 10),
+                    padding: const EdgeInsets.only(
+                      top: AppPadding.padding10,
+                    ),
                     indicatorColor: themeData.tabBarTheme.indicatorColor,
                     tabs: _menuTabs
                         .map(
@@ -56,28 +58,28 @@ class _HomeScreen extends StatelessWidget {
                         )
                         .toList(),
                     onTap: (int index) => context.read<MainPageBloc>().add(
-                      ChangeCurrentDishes(
-                        category: _menuTabs[index].categoryName,
-                      ),
-                    ),
+                          ChangeCurrentDishes(
+                            category: _menuTabs[index].categoryName,
+                          ),
+                        ),
                     //isScrollable: true,
                   ),
                   Expanded(
                     child: GridView.builder(
                       itemCount: state.currentDishes.length,
-                      padding: const EdgeInsets.all(12),
+                      padding: const EdgeInsets.all(AppPadding.padding12),
                       gridDelegate:
                           const SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisCount: 2,
                         childAspectRatio: 1 / 1.6,
                       ),
-                      itemBuilder: (context, index) {
+                      itemBuilder: (BuildContext context, int index) {
                         return DishTile(
                           dish: state.currentDishes[index],
-                          onTap: (){
+                          onTap: () {
                             context.navigateTo(
                               DetailedDishScreenRoute(
-                                  dish: state.currentDishes[index],
+                                dish: state.currentDishes[index],
                               ),
                             );
                           },
