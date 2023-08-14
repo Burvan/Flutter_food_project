@@ -1,4 +1,7 @@
 # Miscellaneous
+*.g.dart
+*.gr.dart
+**/pubspec.lock
 *.class
 *.log
 *.pyc
@@ -43,7 +46,4 @@ app.*.map.json
 /android/app/profile
 /android/app/release
 
-# Custom
-**/*.g.dart
-**/*.gr.dart
-*.lock
+
