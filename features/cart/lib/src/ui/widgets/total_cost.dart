@@ -29,7 +29,6 @@ class TotalCost extends StatelessWidget {
         ),
         child: Column(
           children: <Widget>[
-            //const Divider(thickness: AppSize.size2,),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
@@ -38,7 +37,6 @@ class TotalCost extends StatelessWidget {
                   style: AppTextTheme.font18Bold,
                 ),
                 Text(
-                  //'$totalCost BYN'.toString(),
                   '${totalCost.toStringAsFixed(2)} BYN',
                   style: AppTextTheme.font18Bold,
                 ),
