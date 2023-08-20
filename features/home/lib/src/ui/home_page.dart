@@ -1,45 +1,60 @@
+import 'package:cart/cart.dart';
+import 'package:core/core.dart';
+import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
 import 'package:navigation/navigation.dart';
 import 'package:core_ui/core_ui.dart';
+
+import '../bloc/main_page_bloc.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return AutoTabsScaffold(
-      routes: const [
-        HomeScreenRoute(),
-        CartScreenRoute(),
-        OrderHistoryScreenRoute(),
-        SettingsScreenRoute(),
-      ],
-      appBarBuilder: (context, tabsRouter) {
-        return AppBar(
-          actions: const [
-            ThemeSwitcher(),
-          ],
-          title: const Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Text(
-                'Nice',
-                style: AppTextTheme.font32Bold,
-              ),
-              Text(
-                ' food delivery',
-                style: AppTextTheme.font24,
-              ),
-            ],
+    return MultiBlocProvider(
+        providers: [
+          BlocProvider<MainPageBloc>(
+            create: (_) => MainPageBloc(
+                fetchDishesUseCase: appLocator.get<FetchDishesUseCase>()
+            ),
           ),
-        );
-      },
-      bottomNavigationBuilder: (BuildContext context, TabsRouter tabsRouter) {
-        return AppBottomNavigationBar(
-          currentIndex: tabsRouter.activeIndex,
-          onTap: tabsRouter.setActiveIndex,
-        );
-      },
+          BlocProvider<CartBloc>(create: (_) => CartBloc()),
+        ],
+        child: AutoTabsScaffold(
+          routes: const [
+            HomeScreenRoute(),
+            OrderHistoryScreenRoute(),
+            CartScreenRoute(),
+            SettingsScreenRoute(),
+          ],
+          appBarBuilder: (context, tabsRouter) {
+            return AppBar(
+              actions: const [
+                ThemeSwitcher(),
+              ],
+              title: const Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Text(
+                    'Nice',
+                    style: AppTextTheme.font32Bold,
+                  ),
+                  Text(
+                    ' food delivery',
+                    style: AppTextTheme.font24,
+                  ),
+                ],
+              ),
+            );
+          },
+          bottomNavigationBuilder: (BuildContext context, TabsRouter tabsRouter) {
+            return AppBottomNavigationBar(
+              currentIndex: tabsRouter.activeIndex,
+              onTap: tabsRouter.setActiveIndex,
+            );
+          },
+        )
     );
   }
 }
