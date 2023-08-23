@@ -29,7 +29,9 @@ class DetailedDishScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Center(
-                  child: SelectedDishImage(imagePath: dish.imagePath),
+                  child: SelectedDishImage(
+                    imagePath: dish.imagePath,
+                  ),
                 ),
                 const SizedBox(height: AppSize.size25),
                 Text(
@@ -45,7 +47,7 @@ class DetailedDishScreen extends StatelessWidget {
                 ),
                 const SizedBox(height: AppSize.size20),
                 const Text(
-                  'Ingredients',
+                  AppString.ingredients,
                   style: AppTextTheme.font22Bold,
                 ),
                 const SizedBox(height: AppSize.size20),
@@ -75,7 +77,7 @@ class DetailedDishScreen extends StatelessWidget {
                 ),
                 const SizedBox(height: AppSize.size25),
                 Text(
-                  'Cost: ${dish.cost} BYN',
+                  '${AppString.cost}${dish.cost}${AppString.byn}',
                   style: AppTextTheme.font22Bold,
                 ),
               ],

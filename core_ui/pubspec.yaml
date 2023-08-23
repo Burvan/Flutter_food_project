@@ -18,6 +18,8 @@ dependencies:
     path: ../navigation
   settings:
     path: ../features/settings
+  cart:
+    path: ../features/cart
 
 
 
