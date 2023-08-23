@@ -43,7 +43,7 @@ class CartDishTile extends StatelessWidget {
                       height: AppSize.size5,
                     ),
                     Text(
-                      '${cartDish.dish.cost} BYN',
+                      '${cartDish.dish.cost}${AppString.byn}',
                       style: AppTextTheme.font14Bold,
                     ),
                   ],

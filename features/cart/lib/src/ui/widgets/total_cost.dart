@@ -33,18 +33,20 @@ class TotalCost extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
                 const Text(
-                  'Total cost: ',
+                  AppString.cartTotalCost,
                   style: AppTextTheme.font18Bold,
                 ),
                 Text(
-                  '${totalCost.toStringAsFixed(2)} BYN',
+                  '${totalCost.toStringAsFixed(2)}${AppString.byn}',
                   style: AppTextTheme.font18Bold,
                 ),
               ],
             ),
             ElevatedButton(
               onPressed: onPressed,
-              child: const Text('Make an order'),
+              child: const Text(
+                AppString.makeAnOrder,
+              ),
             ),
           ],
         ),

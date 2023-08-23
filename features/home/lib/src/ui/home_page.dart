@@ -37,12 +37,8 @@ class HomePage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   Text(
-                    'Nice',
-                    style: AppTextTheme.font32Bold,
-                  ),
-                  Text(
-                    ' food delivery',
-                    style: AppTextTheme.font24,
+                    AppString.appBarTitle,
+                    style: AppTextTheme.font25Bold,
                   ),
                 ],
               ),

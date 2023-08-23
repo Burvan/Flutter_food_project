@@ -35,7 +35,7 @@ class CartScreen extends StatelessWidget {
         } else {
           return Center(
             child: Container(
-              width: MediaQuery.of(context).size.width / 1.5,
+              width: MediaQuery.of(context).size.width / AppScale.scaleOne5,
               decoration: BoxDecoration(
                 color: themeData.cardColor,
                 borderRadius: BorderRadius.circular(
@@ -48,8 +48,7 @@ class CartScreen extends StatelessWidget {
                   horizontal: AppPadding.padding24,
                 ),
                 child: Text(
-                  'Your shopping cart is empty. '
-                      'You can select dishes on the home screen.',
+                  AppString.emptyCartScreen,
                   style: AppTextTheme.font18Bold,
                 ),
               ),

@@ -12,12 +12,12 @@ class CartBloc extends Bloc<CartEvent, CartState> {
   }
 
   Future<void> _onAddDishToCart(
-      AddToCartEvent event,
-      Emitter<CartState> emit,
-      ) async {
+    AddToCartEvent event,
+    Emitter<CartState> emit,
+  ) async {
     final List<CartDish> cartDishes = List.from(state.cart.cartDishes);
     bool isDishAlreadyInCart = false;
-    for(int i = 0; i < cartDishes.length; i++){
+    for (int i = 0; i < cartDishes.length; i++) {
       final CartDish cartDish = cartDishes[i];
       if (cartDish.dish == event.dish) {
         cartDish.quantity += 1;
@@ -26,7 +26,10 @@ class CartBloc extends Bloc<CartEvent, CartState> {
     }
     if (!isDishAlreadyInCart) {
       cartDishes.add(
-        CartDish(dish: event.dish, quantity: 1),
+        CartDish(
+          dish: event.dish,
+          quantity: 1,
+        ),
       );
     }
     final updatedTotalCost = state.cart.totalCost + event.dish.cost;
@@ -41,15 +44,16 @@ class CartBloc extends Bloc<CartEvent, CartState> {
   }
 
   Future<void> _onRemoveDishFromCart(
-      RemoveFromCartEvent event,
-      Emitter<CartState> emit,
-      ) async {
+    RemoveFromCartEvent event,
+    Emitter<CartState> emit,
+  ) async {
     final List<CartDish> cartDishes = List.from(state.cart.cartDishes);
-    for(int i = 0; i < cartDishes.length; i++){
+    for (int i = 0; i < cartDishes.length; i++) {
       final CartDish cartDish = cartDishes[i];
       if (cartDish.dish == event.cartDish.dish && cartDish.quantity > 1) {
         cartDish.quantity -= 1;
-      } else if(cartDish.dish == event.cartDish.dish && cartDish.quantity == 1){
+      } else if (cartDish.dish == event.cartDish.dish &&
+          cartDish.quantity == 1) {
         cartDishes.removeAt(i);
       }
     }
@@ -65,9 +69,9 @@ class CartBloc extends Bloc<CartEvent, CartState> {
   }
 
   Future<void> _onClearCart(
-      ClearCartEvent event,
-      Emitter<CartState> emit,
-      ) async {
+    ClearCartEvent event,
+    Emitter<CartState> emit,
+  ) async {
     emit(
       state.copyWith(
         cart: const Cart(

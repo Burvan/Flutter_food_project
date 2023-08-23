@@ -16,7 +16,7 @@ class MenuDishImage extends StatelessWidget {
       tag: imagePath,
       child: Image.network(
         imagePath,
-        height: mediaQueryData.size.height * AppMultiplier.multiplier13,
+        height: mediaQueryData.size.height * AppScale.scaleZero13,
       ),
     );
   }

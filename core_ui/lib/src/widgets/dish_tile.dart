@@ -30,7 +30,7 @@ class DishTile extends StatelessWidget {
             border: Border.all(color: themeData.secondaryHeaderColor),
             boxShadow: [
               BoxShadow(
-                blurRadius: 7,
+                blurRadius: AppBorderRadius.borderRadius7,
                 color: themeData.primaryColor.withOpacity(0.6),
                 offset: const Offset(0, 2),
               ),
@@ -58,7 +58,7 @@ class DishTile extends StatelessWidget {
                     ),
                     padding: const EdgeInsets.all(AppPadding.padding12),
                     child: Text(
-                      '${dish.cost} BYN',
+                      '${dish.cost}${AppString.byn}',
                       style: AppTextTheme.font14Bold.copyWith(
                         color: themeData.primaryColor,
                       ),
@@ -94,25 +94,42 @@ class DishTile extends StatelessWidget {
                         children: <Widget>[
                           ElevatedButton(
                             onPressed: () {
-                              cartBloc.add(
-                                AddToCartEvent(dish: dish),
-                              );
-                              final SnackBar snackBar = SnackBar(
-                                content: Text(
-                                  'You have added \'${dish.name}\' to the cart',
-                                  style: AppTextTheme.font18Bold,
-                                ),
-                                behavior: SnackBarBehavior.fixed,
-                                padding: const EdgeInsets.all(
-                                  AppPadding.padding20,
-                                ),
-                                duration: const Duration(
-                                  seconds: 2,
-                                ),
-                                backgroundColor: themeData.secondaryHeaderColor,
-                              );
-                              ScaffoldMessenger.of(context)
-                                  .showSnackBar(snackBar);
+                              try {
+                                cartBloc.add(
+                                  AddToCartEvent(dish: dish),
+                                );
+                                final SnackBar snackBar = SnackBar(
+                                  content: Text(
+                                    '${AppString.youHaveAdded}${dish.name}'
+                                    '${AppString.toTheCart}',
+                                    style: AppTextTheme.font18Bold,
+                                  ),
+                                  behavior: SnackBarBehavior.fixed,
+                                  padding: const EdgeInsets.all(
+                                    AppPadding.padding20,
+                                  ),
+                                  duration: const Duration(seconds: 2),
+                                  backgroundColor:
+                                      themeData.secondaryHeaderColor,
+                                );
+                                ScaffoldMessenger.of(context)
+                                    .showSnackBar(snackBar);
+                              } catch (error) {
+                                final SnackBar snackBar = SnackBar(
+                                  content: Text(
+                                    '${AppString.errorMessage}$error',
+                                    style: AppTextTheme.font18Bold,
+                                  ),
+                                  behavior: SnackBarBehavior.fixed,
+                                  padding: const EdgeInsets.all(
+                                    AppPadding.padding20,
+                                  ),
+                                  duration: const Duration(seconds: 2),
+                                  backgroundColor: themeData.secondaryHeaderColor,
+                                );
+                                ScaffoldMessenger.of(context)
+                                    .showSnackBar(snackBar);
+                              }
                             },
                             style: ButtonStyle(
                               shape: MaterialStatePropertyAll(
@@ -125,12 +142,8 @@ class DishTile extends StatelessWidget {
                             ),
                             child: const Row(
                               children: <Widget>[
-                                Text(
-                                  'Add',
-                                ),
-                                Icon(
-                                  Icons.add_shopping_cart_sharp,
-                                ),
+                                Text(AppString.add),
+                                Icon(Icons.add_shopping_cart_sharp),
                               ],
                             ),
                           )

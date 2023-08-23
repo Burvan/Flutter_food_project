@@ -16,7 +16,7 @@ class SelectedDishImage extends StatelessWidget {
       tag: imagePath,
       child: Image.network(
         imagePath,
-        height: mediaQueryData.size.height * AppMultiplier.multiplier3,
+        height: mediaQueryData.size.height * AppScale.scaleZero3,
       ),
     );
   }
