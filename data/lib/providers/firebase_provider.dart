@@ -1,5 +1,5 @@
 import 'package:core/core.dart';
-import 'package:data/entities/dishes/dishes.dart';
+import 'package:data/entities/dishes/entities/dish_entity.dart';
 import 'package:data/mappers/mappers.dart';
 import 'package:domain/domain.dart' as domain;
 
