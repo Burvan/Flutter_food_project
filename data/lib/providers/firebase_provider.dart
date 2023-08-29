@@ -12,7 +12,7 @@ class FirebaseProvider {
     required this.mapper,
   });
 
-  Future<List<domain.Dish>> fetchDishes() async {
+  Future<List<domain.Dish>>   fetchDishes() async {
     final DocumentSnapshot documentSnapshot =
         await collection.doc('dishes').get();
 
