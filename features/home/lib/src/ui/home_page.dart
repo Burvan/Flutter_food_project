@@ -16,10 +16,16 @@ class HomePage extends StatelessWidget {
         providers: [
           BlocProvider<MainPageBloc>(
             create: (_) => MainPageBloc(
-                fetchDishesUseCase: appLocator.get<FetchDishesUseCase>()
+              fetchDishesUseCase: appLocator.get<FetchDishesUseCase>(),
             ),
           ),
-          BlocProvider<CartBloc>(create: (_) => CartBloc()),
+          BlocProvider<CartBloc>(
+            create: (_) => CartBloc(
+              fetchCartDishesUseCase: appLocator.get<FetchCartDishesUseCase>(),
+              addToCartUseCase: appLocator.get<AddToCartUseCase>(),
+              removeFromCartUseCase: appLocator.get<RemoveFromCartUseCase>(),
+            ),
+          ),
         ],
         child: AutoTabsScaffold(
           routes: const [
@@ -44,13 +50,13 @@ class HomePage extends StatelessWidget {
               ),
             );
           },
-          bottomNavigationBuilder: (BuildContext context, TabsRouter tabsRouter) {
+          bottomNavigationBuilder:
+              (BuildContext context, TabsRouter tabsRouter) {
             return AppBottomNavigationBar(
               currentIndex: tabsRouter.activeIndex,
               onTap: tabsRouter.setActiveIndex,
             );
           },
-        )
-    );
+        ));
   }
 }
