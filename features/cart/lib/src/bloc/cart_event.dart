@@ -4,6 +4,10 @@ abstract class CartEvent {
   const CartEvent();
 }
 
+class InitCartEvent extends CartEvent {
+  const InitCartEvent();
+}
+
 class AddToCartEvent extends CartEvent {
   final Dish dish;
 
