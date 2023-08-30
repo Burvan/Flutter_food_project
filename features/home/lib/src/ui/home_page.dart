@@ -27,36 +27,38 @@ class HomePage extends StatelessWidget {
             ),
           ),
         ],
-        child: AutoTabsScaffold(
-          routes: const [
-            HomeScreenRoute(),
-            OrderHistoryScreenRoute(),
-            CartScreenRoute(),
-            SettingsScreenRoute(),
-          ],
-          appBarBuilder: (context, tabsRouter) {
-            return AppBar(
-              actions: const [
-                ThemeSwitcher(),
-              ],
-              title: const Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Text(
-                    AppString.appBarTitle,
-                    style: AppTextTheme.font25Bold,
-                  ),
+        child: SafeArea(
+          child: AutoTabsScaffold(
+            routes: const [
+              HomeScreenRoute(),
+              OrderHistoryScreenRoute(),
+              CartScreenRoute(),
+              SettingsScreenRoute(),
+            ],
+            appBarBuilder: (context, tabsRouter) {
+              return AppBar(
+                actions: const [
+                  ThemeSwitcher(),
                 ],
-              ),
-            );
-          },
-          bottomNavigationBuilder:
-              (BuildContext context, TabsRouter tabsRouter) {
-            return AppBottomNavigationBar(
-              currentIndex: tabsRouter.activeIndex,
-              onTap: tabsRouter.setActiveIndex,
-            );
-          },
+                title: const Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Text(
+                      AppString.appBarTitle,
+                      style: AppTextTheme.font25Bold,
+                    ),
+                  ],
+                ),
+              );
+            },
+            bottomNavigationBuilder:
+                (BuildContext context, TabsRouter tabsRouter) {
+              return AppBottomNavigationBar(
+                currentIndex: tabsRouter.activeIndex,
+                onTap: tabsRouter.setActiveIndex,
+              );
+            },
+          ),
         ));
   }
 }

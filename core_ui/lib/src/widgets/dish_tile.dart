@@ -18,6 +18,7 @@ class DishTile extends StatelessWidget {
   Widget build(BuildContext context) {
     final ThemeData themeData = Theme.of(context);
     final CartBloc cartBloc = BlocProvider.of<CartBloc>(context);
+    final MediaQueryData mediaQueryData = MediaQuery.of(context);
 
     return InkWell(
       borderRadius: BorderRadius.circular(AppBorderRadius.borderRadius12),
@@ -70,14 +71,19 @@ class DishTile extends StatelessWidget {
                 child: Column(
                   children: <Widget>[
                     Padding(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: AppPadding.padding24,
-                        vertical: AppPadding.padding12,
-                      ),
-                      child: MenuDishImage(
-                        imagePath: dish.imagePath,
-                      ),
-                    ),
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: AppPadding.padding24,
+                          vertical: AppPadding.padding12,
+                        ),
+                        child: MenuDishImage(
+                          imagePath: dish.imagePath,
+                          height:
+                              mediaQueryData.size.height * AppScale.scaleZero13,
+                        ),
+                        //MenuDishImage(
+                        //   imagePath: dish.imagePath,
+                        // ),
+                        ),
                     Text(
                       dish.name,
                       style: AppTextTheme.font18Bold,
@@ -125,7 +131,8 @@ class DishTile extends StatelessWidget {
                                     AppPadding.padding20,
                                   ),
                                   duration: const Duration(seconds: 2),
-                                  backgroundColor: themeData.secondaryHeaderColor,
+                                  backgroundColor:
+                                      themeData.secondaryHeaderColor,
                                 );
                                 ScaffoldMessenger.of(context)
                                     .showSnackBar(snackBar);

@@ -1,3 +1,4 @@
+import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
 
 class AppTextTheme {
@@ -8,6 +9,16 @@ class AppTextTheme {
 
   static const TextStyle font18 = TextStyle(
     fontSize: 18,
+  );
+
+  static const TextStyle font18Green = TextStyle(
+    fontSize: 18,
+    color: AppColors.green,
+  );
+
+  static const TextStyle font18Red = TextStyle(
+    fontSize: 18,
+    color: AppColors.red,
   );
 
   static const TextStyle font24 = TextStyle(

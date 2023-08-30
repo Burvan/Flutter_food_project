@@ -1,22 +1,38 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:core_ui/core_ui.dart';
 
 class MenuDishImage extends StatelessWidget {
   final String imagePath;
+  final double height;
 
   const MenuDishImage({
     Key? key,
+    required this.height,
     required this.imagePath,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final MediaQueryData mediaQueryData = MediaQuery.of(context);
+    final ThemeData themeData = Theme.of(context);
+
     return Hero(
       tag: imagePath,
-      child: Image.network(
-        imagePath,
-        height: mediaQueryData.size.height * AppScale.scaleZero13,
+      child: CachedNetworkImage(
+        imageUrl: imagePath,
+        height: height,
+        placeholder: (
+          BuildContext context,
+          String url,
+        ) {
+          return SizedBox(
+            child: Center(
+              child: CircularProgressIndicator(
+                color: themeData.primaryColor,
+              ),
+            ),
+          );
+        },
       ),
     );
   }

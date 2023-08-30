@@ -11,4 +11,6 @@ class AppString {
   static const String ingredients = 'Ingredients';
   static const String appBarTitle = 'Delicious and ellipsis...';
   static const String errorMessage = 'An error occurred: ';
+  static const String isInternet = 'Internet connection is available';
+  static const String isNotInternet = 'Internet connection is not available!';
 }
