@@ -12,4 +12,14 @@ class SettingsHiveProvider {
     final Box themeBox = await Hive.openBox('theme');
     return themeBox.put('isDark', isDark.toString());
   }
+
+  Future<double> getFontSize () async {
+    final Box fontSizeBox = await Hive.openBox('fontSize');
+    return fontSizeBox.get('textScale');
+  }
+  
+  Future<void> setFontSize (double textScale) async {
+    final Box fontSizeBox = await Hive.openBox('fontSize');
+    return fontSizeBox.put('textScale', textScale);
+  }
 }

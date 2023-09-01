@@ -41,6 +41,7 @@ class HomePage extends StatelessWidget {
                 AppString.appBarTitle,
                 style: AppTextTheme.font25Bold,
               ),
+              centerTitle: true,
             );
           },
           bottomNavigationBuilder:

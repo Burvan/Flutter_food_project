@@ -3,8 +3,8 @@ import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:settings/settings.dart';
 
-class ThemeSwitcher extends StatelessWidget {
-  const ThemeSwitcher({Key? key}) : super(key: key);
+class FontScaleChoice extends StatelessWidget {
+  const FontScaleChoice({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -16,14 +16,16 @@ class ThemeSwitcher extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
             const Text(
-              AppString.useADarkTheme,
+              AppString.fontSize,
               style: AppTextTheme.font22,
             ),
-            Switch(
-              value: state.isDark,
-              onChanged: (bool value) {
+            Slider(
+              value: state.textScale,
+              min: AppScale.scaleZero8,
+              max: AppScale.scaleOne2,
+              onChanged: (double textScale) {
                 bloc.add(
-                  ChangeThemeEvent(isDark: value),
+                  ChangeFontSizeEvent(textScale: textScale),
                 );
               },
             ),

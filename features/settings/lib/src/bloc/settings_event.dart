@@ -13,3 +13,9 @@ class ChangeThemeEvent extends SettingsEvent {
 
   ChangeThemeEvent({required this.isDark});
 }
+
+class ChangeFontSizeEvent extends SettingsEvent {
+  final double textScale;
+
+  ChangeFontSizeEvent({required this.textScale});
+}

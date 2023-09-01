@@ -14,10 +14,22 @@ class FlutterLabApp extends StatelessWidget {
       create: (_) => SettingsBloc(
         setThemeUseCase: appLocator.get<SetThemeUseCase>(),
         checkThemeUseCase: appLocator.get<CheckThemeUseCase>(),
+        setFontSizeUseCase: appLocator.get<SetFontSizeUseCase>(),
+        checkFontSizeUseCase: appLocator.get<CheckFontSizeUseCase>(),
       ),
       child: BlocBuilder<SettingsBloc, SettingsState>(
         builder: (BuildContext context, SettingsState state) {
           return MaterialApp.router(
+            builder: (_, Widget? child) {
+              final MediaQueryData mediaQueryData = MediaQuery.of(context);
+
+              return MediaQuery(
+                data: mediaQueryData.copyWith(
+                  textScaleFactor: state.textScale,
+                ),
+                child: child!,
+              );
+            },
             theme: state.isDark ? AppTheme.darkTheme : AppTheme.lightTheme,
             routerDelegate: appLocator.get<AppRouter>().delegate(),
             routeInformationParser:

@@ -14,4 +14,5 @@ class AppString {
   static const String isInternet = 'Internet connection is available';
   static const String isNotInternet = 'Internet connection is not available!';
   static const String useADarkTheme = 'Use a dark theme';
+  static const String fontSize = 'Font size';
 }

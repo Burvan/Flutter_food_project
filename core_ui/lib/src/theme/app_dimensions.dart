@@ -26,6 +26,8 @@ class AppSize {
 class AppScale {
   static const double scaleZero13 = 0.13;
   static const double scaleZero11 = 0.11;
+  static const double scaleZero8 = 0.8;
   static const double scaleZero3 = 0.3;
+  static const double scaleOne2 = 1.2;
   static const double scaleOne5 = 1.5;
 }

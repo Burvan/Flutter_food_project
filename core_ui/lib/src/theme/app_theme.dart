@@ -22,7 +22,12 @@ class AppTheme {
       ),
       switchTheme: const SwitchThemeData(
         trackColor: MaterialStatePropertyAll(AppColors.lightPink),
-        thumbColor: MaterialStatePropertyAll(AppColors.grey),
+        thumbColor: MaterialStatePropertyAll(AppColors.gentlyPink),
+      ),
+      sliderTheme: const SliderThemeData(
+        activeTrackColor: AppColors.gentlyPink,
+        thumbColor: AppColors.gentlyPink,
+        inactiveTrackColor: AppColors.lightPink,
       ),
       bottomNavigationBarTheme: const BottomNavigationBarThemeData(
           backgroundColor: AppColors.white,
@@ -53,6 +58,11 @@ class AppTheme {
       switchTheme: const SwitchThemeData(
         trackColor: MaterialStatePropertyAll(AppColors.lightGrey),
         thumbColor: MaterialStatePropertyAll(AppColors.indigo),
+      ),
+      sliderTheme: const SliderThemeData(
+        activeTrackColor: AppColors.indigo,
+        thumbColor: AppColors.indigo,
+        inactiveTrackColor: AppColors.lightGrey,
       ),
       bottomNavigationBarTheme: const BottomNavigationBarThemeData(
           backgroundColor: AppColors.darkGrey,

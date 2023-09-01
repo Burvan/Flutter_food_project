@@ -17,4 +17,14 @@ class SettingsRepositoryImpl implements domain.SettingsRepository {
   Future<void> setTheme(bool isDark) async {
     return _settingsHiveProvider.setTheme(isDark);
   }
+
+  @override
+  Future<double> checkFontSize(domain.NoParams payload) {
+    return _settingsHiveProvider.getFontSize();
+  }
+
+  @override
+  Future<void> setFontSize(double textScale) {
+    return _settingsHiveProvider.setFontSize(textScale);
+  }
 }
