@@ -39,7 +39,7 @@ class MainPageBloc extends Bloc<MainPageEvent, MainPageState> {
     InitEvent event,
     Emitter<MainPageState> emit,
   ) async {
-    add(CheckInternetConnectionEvent());
+    add(const CheckInternetConnectionEvent());
     emit(
       state.copyWith(
         isLoading: true,

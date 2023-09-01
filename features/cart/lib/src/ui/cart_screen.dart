@@ -11,51 +11,53 @@ class CartScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final ThemeData themeData = Theme.of(context);
-    return Scaffold(body: BlocBuilder<CartBloc, CartState>(
-      builder: (_, CartState state) {
-        if (state.cart.cartDishes.isNotEmpty) {
-          return Column(
-            children: <Widget>[
-              Expanded(
-                child: ListView.builder(
-                  itemCount: state.cart.cartDishes.length,
-                  itemBuilder: (_, int index) {
-                    return CartDishTile(
-                      cartDish: state.cart.cartDishes.elementAt(index),
-                    );
-                  },
+    return Scaffold(
+      body: BlocBuilder<CartBloc, CartState>(
+        builder: (_, CartState state) {
+          if (state.cart.cartDishes.isNotEmpty) {
+            return Column(
+              children: <Widget>[
+                Expanded(
+                  child: ListView.builder(
+                    itemCount: state.cart.cartDishes.length,
+                    itemBuilder: (_, int index) {
+                      return CartDishTile(
+                        cartDish: state.cart.cartDishes.elementAt(index),
+                      );
+                    },
+                  ),
+                ),
+                TotalCost(
+                  totalCost: state.cart.totalCost,
+                  onPressed: () {},
+                ),
+              ],
+            );
+          } else {
+            return Center(
+              child: Container(
+                width: MediaQuery.of(context).size.width / AppScale.scaleOne5,
+                decoration: BoxDecoration(
+                  color: themeData.cardColor,
+                  borderRadius: BorderRadius.circular(
+                    AppBorderRadius.borderRadius12,
+                  ),
+                ),
+                child: const Padding(
+                  padding: EdgeInsets.symmetric(
+                    vertical: AppPadding.padding40,
+                    horizontal: AppPadding.padding24,
+                  ),
+                  child: Text(
+                    AppString.emptyCartScreen,
+                    style: AppTextTheme.font18Bold,
+                  ),
                 ),
               ),
-              TotalCost(
-                totalCost: state.cart.totalCost,
-                onPressed: () {},
-              ),
-            ],
-          );
-        } else {
-          return Center(
-            child: Container(
-              width: MediaQuery.of(context).size.width / AppScale.scaleOne5,
-              decoration: BoxDecoration(
-                color: themeData.cardColor,
-                borderRadius: BorderRadius.circular(
-                  AppBorderRadius.borderRadius12,
-                ),
-              ),
-              child: const Padding(
-                padding: EdgeInsets.symmetric(
-                  vertical: AppPadding.padding40,
-                  horizontal: AppPadding.padding24,
-                ),
-                child: Text(
-                  AppString.emptyCartScreen,
-                  style: AppTextTheme.font18Bold,
-                ),
-              ),
-            ),
-          );
-        }
-      },
-    ));
+            );
+          }
+        },
+      ),
+    );
   }
 }

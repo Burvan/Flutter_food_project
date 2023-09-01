@@ -4,10 +4,12 @@ abstract class SettingsEvent {
   const SettingsEvent();
 }
 
-class InitThemeEvent extends SettingsEvent {
-  const InitThemeEvent();
+class InitSettingsEvent extends SettingsEvent {
+  const InitSettingsEvent();
 }
 
 class ChangeThemeEvent extends SettingsEvent {
-  ChangeThemeEvent();
+  final bool isDark;
+
+  ChangeThemeEvent({required this.isDark});
 }

@@ -1,4 +1,5 @@
 import 'package:core/core.dart';
+import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
 import 'package:navigation/navigation.dart';
 import 'package:settings/settings.dart';
@@ -10,17 +11,20 @@ class FlutterLabApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider<SettingsBloc>(
-      create: (_) => SettingsBloc(),
+      create: (_) => SettingsBloc(
+        setThemeUseCase: appLocator.get<SetThemeUseCase>(),
+        checkThemeUseCase: appLocator.get<CheckThemeUseCase>(),
+      ),
       child: BlocBuilder<SettingsBloc, SettingsState>(
-        builder: (BuildContext context, SettingsState state){
+        builder: (BuildContext context, SettingsState state) {
           return MaterialApp.router(
             theme: state.isDark ? AppTheme.darkTheme : AppTheme.lightTheme,
             routerDelegate: appLocator.get<AppRouter>().delegate(),
-            routeInformationParser: appLocator.get<AppRouter>().defaultRouteParser(),
+            routeInformationParser:
+                appLocator.get<AppRouter>().defaultRouteParser(),
           );
         },
       ),
     );
-
   }
 }

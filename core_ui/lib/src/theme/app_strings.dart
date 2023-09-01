@@ -13,4 +13,5 @@ class AppString {
   static const String errorMessage = 'An error occurred: ';
   static const String isInternet = 'Internet connection is available';
   static const String isNotInternet = 'Internet connection is not available!';
+  static const String useADarkTheme = 'Use a dark theme';
 }

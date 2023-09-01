@@ -20,6 +20,10 @@ class AppTheme {
           backgroundColor: MaterialStatePropertyAll(AppColors.brightPink),
         ),
       ),
+      switchTheme: const SwitchThemeData(
+        trackColor: MaterialStatePropertyAll(AppColors.lightPink),
+        thumbColor: MaterialStatePropertyAll(AppColors.grey),
+      ),
       bottomNavigationBarTheme: const BottomNavigationBarThemeData(
           backgroundColor: AppColors.white,
           unselectedItemColor: AppColors.lightGrey,
@@ -45,6 +49,10 @@ class AppTheme {
         style: ButtonStyle(
           backgroundColor: MaterialStatePropertyAll(AppColors.indigo),
         ),
+      ),
+      switchTheme: const SwitchThemeData(
+        trackColor: MaterialStatePropertyAll(AppColors.lightGrey),
+        thumbColor: MaterialStatePropertyAll(AppColors.indigo),
       ),
       bottomNavigationBarTheme: const BottomNavigationBarThemeData(
           backgroundColor: AppColors.darkGrey,

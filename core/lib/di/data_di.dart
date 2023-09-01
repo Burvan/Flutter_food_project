@@ -5,6 +5,7 @@ import 'package:data/entities/dishes/entities/dish_entity.dart';
 import 'package:data/mappers/mappers.dart';
 import 'package:data/repositories/cart_repository_impl.dart';
 import 'package:data/repositories/dishes_repository_impl.dart';
+import 'package:data/repositories/settings_repository_impl.dart';
 import 'package:domain/domain.dart';
 
 final DataDI dataDI = DataDI();
@@ -20,7 +21,7 @@ class DataDI {
     );
 
     appLocator.registerLazySingleton<CartDishEntityAdapter>(
-          () => CartDishEntityAdapter(),
+      () => CartDishEntityAdapter(),
     );
 
     await Hive.initFlutter();
@@ -48,6 +49,10 @@ class DataDI {
       () => CartHiveProvider(),
     );
 
+    appLocator.registerLazySingleton<SettingsHiveProvider>(
+      () => SettingsHiveProvider(),
+    );
+
     ///UseCases
     appLocator.registerLazySingleton<FetchDishesUseCase>(
       () => FetchDishesUseCase(
@@ -73,6 +78,18 @@ class DataDI {
       ),
     );
 
+    appLocator.registerLazySingleton<CheckThemeUseCase>(
+      () => CheckThemeUseCase(
+        settingsRepository: appLocator.get<SettingsRepository>(),
+      ),
+    );
+
+    appLocator.registerLazySingleton<SetThemeUseCase>(
+      () => SetThemeUseCase(
+        settingsRepository: appLocator.get<SettingsRepository>(),
+      ),
+    );
+
     ///Repositories
     appLocator.registerLazySingleton<DishesRepository>(
       () => DishesRepositoryImpl(
@@ -86,6 +103,12 @@ class DataDI {
       () => CartRepositoryImpl(
         mapper: appLocator.get<MapperFactory>(),
         cartHiveProvider: appLocator.get<CartHiveProvider>(),
+      ),
+    );
+
+    appLocator.registerLazySingleton<SettingsRepository>(
+      () => SettingsRepositoryImpl(
+        settingsHiveProvider: appLocator.get<SettingsHiveProvider>(),
       ),
     );
   }
