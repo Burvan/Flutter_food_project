@@ -71,19 +71,16 @@ class DishTile extends StatelessWidget {
                 child: Column(
                   children: <Widget>[
                     Padding(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: AppPadding.padding24,
-                          vertical: AppPadding.padding12,
-                        ),
-                        child: MenuDishImage(
-                          imagePath: dish.imagePath,
-                          height:
-                              mediaQueryData.size.height * AppScale.scaleZero13,
-                        ),
-                        //MenuDishImage(
-                        //   imagePath: dish.imagePath,
-                        // ),
-                        ),
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: AppPadding.padding24,
+                        vertical: AppPadding.padding12,
+                      ),
+                      child: MenuDishImage(
+                        imagePath: dish.imagePath,
+                        height:
+                            mediaQueryData.size.height * AppScale.scaleZero13,
+                      ),
+                    ),
                     Text(
                       dish.name,
                       style: AppTextTheme.font18Bold,

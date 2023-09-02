@@ -17,6 +17,7 @@ dependencies:
     path: ../../domain
   core_ui:
     path: ../../core_ui
+  url_launcher: ^6.1.14
 
 
 dev_dependencies:
