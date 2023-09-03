@@ -8,14 +8,17 @@ class CartBloc extends Bloc<CartEvent, CartState> {
   final FetchCartDishesUseCase _fetchCartDishesUseCase;
   final AddToCartUseCase _addToCartUseCase;
   final RemoveFromCartUseCase _removeFromCartUseCase;
+  final ClearCartUseCase _clearCartUseCase;
 
   CartBloc({
     required FetchCartDishesUseCase fetchCartDishesUseCase,
     required AddToCartUseCase addToCartUseCase,
     required RemoveFromCartUseCase removeFromCartUseCase,
+    required ClearCartUseCase clearCartUseCase,
   })  : _fetchCartDishesUseCase = fetchCartDishesUseCase,
         _addToCartUseCase = addToCartUseCase,
         _removeFromCartUseCase = removeFromCartUseCase,
+        _clearCartUseCase = clearCartUseCase,
         super(CartState.empty()) {
     on<InitCartEvent>(_onInitCart);
     on<AddToCartEvent>(_onAddDishToCart);
@@ -90,6 +93,7 @@ class CartBloc extends Bloc<CartEvent, CartState> {
     ClearCartEvent event,
     Emitter<CartState> emit,
   ) async {
+    await _clearCartUseCase.execute(const NoParams());
     emit(
       state.copyWith(
         cart: const Cart(

@@ -16,4 +16,5 @@ class AppString {
   static const String useADarkTheme = 'Use a dark theme';
   static const String fontSize = 'Font size';
   static const String contactUs = 'Contact us';
+  static const String clearCart = 'Clear cart';
 }

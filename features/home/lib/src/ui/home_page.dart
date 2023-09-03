@@ -24,6 +24,7 @@ class HomePage extends StatelessWidget {
             fetchCartDishesUseCase: appLocator.get<FetchCartDishesUseCase>(),
             addToCartUseCase: appLocator.get<AddToCartUseCase>(),
             removeFromCartUseCase: appLocator.get<RemoveFromCartUseCase>(),
+            clearCartUseCase: appLocator.get<ClearCartUseCase>(),
           ),
         ),
       ],

@@ -7,7 +7,6 @@ import 'package:data/repositories/cart_repository_impl.dart';
 import 'package:data/repositories/dishes_repository_impl.dart';
 import 'package:data/repositories/settings_repository_impl.dart';
 import 'package:domain/domain.dart';
-import 'package:domain/use_cases/set_font_size_use_case.dart';
 
 final DataDI dataDI = DataDI();
 
@@ -75,6 +74,12 @@ class DataDI {
 
     appLocator.registerLazySingleton<RemoveFromCartUseCase>(
       () => RemoveFromCartUseCase(
+        cartRepository: appLocator.get<CartRepository>(),
+      ),
+    );
+
+    appLocator.registerLazySingleton<ClearCartUseCase>(
+      () => ClearCartUseCase(
         cartRepository: appLocator.get<CartRepository>(),
       ),
     );

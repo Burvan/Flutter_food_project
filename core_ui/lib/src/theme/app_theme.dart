@@ -29,6 +29,10 @@ class AppTheme {
         thumbColor: AppColors.gentlyPink,
         inactiveTrackColor: AppColors.lightPink,
       ),
+      progressIndicatorTheme: const ProgressIndicatorThemeData(
+        color: AppColors.lightPink,
+        circularTrackColor: AppColors.brightPink,
+      ),
       bottomNavigationBarTheme: const BottomNavigationBarThemeData(
           backgroundColor: AppColors.white,
           unselectedItemColor: AppColors.lightGrey,
@@ -63,6 +67,10 @@ class AppTheme {
         activeTrackColor: AppColors.indigo,
         thumbColor: AppColors.indigo,
         inactiveTrackColor: AppColors.lightGrey,
+      ),
+      progressIndicatorTheme: const ProgressIndicatorThemeData(
+        color: AppColors.lightGrey,
+        circularTrackColor: AppColors.indigo,
       ),
       bottomNavigationBarTheme: const BottomNavigationBarThemeData(
           backgroundColor: AppColors.darkGrey,

@@ -15,4 +15,5 @@ export 'use_cases/check_theme_use_case.dart';
 export 'use_cases/set_theme_use_case.dart';
 export 'use_cases/check_font_size_use_case.dart';
 export 'use_cases/set_font_size_use_case.dart';
+export 'use_cases/clear_cart_use_case.dart';
 export 'use_cases/use_case.dart';

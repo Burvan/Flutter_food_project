@@ -35,10 +35,7 @@ class HomeScreen extends StatelessWidget {
       builder: (_, MainPageState state) {
         if (state.isLoading) {
           return const Center(
-            child: CircularProgressIndicator(
-              color: AppColors.lightPink,
-              backgroundColor: AppColors.brightPink,
-            ),
+            child: CircularProgressIndicator(),
           );
         }
         return DefaultTabController(

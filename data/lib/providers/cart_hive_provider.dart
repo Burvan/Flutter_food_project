@@ -42,6 +42,11 @@ class CartHiveProvider {
     }
   }
 
+  Future<void> clearCart() async {
+    final Box<CartDishEntity> cartBox = await Hive.openBox('cart');
+    cartBox.clear();
+  }
+
   Future<List<CartDishEntity>> getCartDishes() async {
     final Box<CartDishEntity> cartBox = await Hive.openBox('cart');
     final List<CartDishEntity> cartDishesEntity = cartBox.values.toList();

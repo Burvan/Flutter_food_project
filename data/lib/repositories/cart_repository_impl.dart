@@ -1,5 +1,6 @@
 import 'package:data/data.dart';
 import 'package:data/entities/cart/cart_dish_entity.dart';
+import 'package:data/entities/cart/cart_entity.dart';
 import 'package:data/entities/dishes/entities/dish_entity.dart';
 import 'package:data/mappers/mappers.dart';
 import 'package:domain/domain.dart' as domain;
@@ -34,5 +35,10 @@ class CartRepositoryImpl implements domain.CartRepository {
     final CartDishEntity cartDishEntity =
         mapper.cartDishMapper.toEntity(cartDish);
     await _cartHiveProvider.removeFromCart(cartDishEntity);
+  }
+
+  @override
+  Future<void> clearCart(domain.NoParams payload) async {
+    await _cartHiveProvider.clearCart();
   }
 }

@@ -30,7 +30,8 @@ class FlutterLabApp extends StatelessWidget {
                 child: child!,
               );
             },
-            theme: state.isDark ? AppTheme.darkTheme : AppTheme.lightTheme,
+            theme: state.isDark ? AppTheme.darkTheme : state.themeData,
+            darkTheme: state.isDark ? AppTheme.darkTheme : state.themeData,
             routerDelegate: appLocator.get<AppRouter>().delegate(),
             routeInformationParser:
                 appLocator.get<AppRouter>().defaultRouteParser(),

@@ -11,6 +11,8 @@ class CartScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final ThemeData themeData = Theme.of(context);
+    final CartBloc bloc = BlocProvider.of(context);
+
     return Scaffold(
       body: BlocBuilder<CartBloc, CartState>(
         builder: (_, CartState state) {
@@ -29,7 +31,10 @@ class CartScreen extends StatelessWidget {
                 ),
                 TotalCost(
                   totalCost: state.cart.totalCost,
-                  onPressed: () {},
+                  onMakeAnOrderPressed: () {},
+                  onClearCartPressed: () => bloc.add(
+                    const ClearCartEvent(),
+                  ),
                 ),
               ],
             );
