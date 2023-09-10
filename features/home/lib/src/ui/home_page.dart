@@ -13,14 +13,22 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
-        providers: [
-          BlocProvider<MainPageBloc>(
-            create: (_) => MainPageBloc(
-                fetchDishesUseCase: appLocator.get<FetchDishesUseCase>()
-            ),
+      providers: <BlocProvider>[
+        BlocProvider<MainPageBloc>(
+          create: (_) => MainPageBloc(
+            fetchDishesUseCase: appLocator.get<FetchDishesUseCase>(),
           ),
-          BlocProvider<CartBloc>(create: (_) => CartBloc()),
-        ],
+        ),
+        BlocProvider<CartBloc>(
+          create: (_) => CartBloc(
+            fetchCartDishesUseCase: appLocator.get<FetchCartDishesUseCase>(),
+            addToCartUseCase: appLocator.get<AddToCartUseCase>(),
+            removeFromCartUseCase: appLocator.get<RemoveFromCartUseCase>(),
+            clearCartUseCase: appLocator.get<ClearCartUseCase>(),
+          ),
+        ),
+      ],
+      child: SafeArea(
         child: AutoTabsScaffold(
           routes: const [
             HomeScreenRoute(),
@@ -28,29 +36,24 @@ class HomePage extends StatelessWidget {
             CartScreenRoute(),
             SettingsScreenRoute(),
           ],
-          appBarBuilder: (context, tabsRouter) {
+          appBarBuilder: (_, TabsRouter tabsRouter) {
             return AppBar(
-              actions: const [
-                ThemeSwitcher(),
-              ],
-              title: const Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Text(
-                    AppString.appBarTitle,
-                    style: AppTextTheme.font25Bold,
-                  ),
-                ],
+              title: const Text(
+                AppString.appBarTitle,
+                style: AppTextTheme.font25Bold,
               ),
+              centerTitle: true,
             );
           },
-          bottomNavigationBuilder: (BuildContext context, TabsRouter tabsRouter) {
+          bottomNavigationBuilder:
+              (_, TabsRouter tabsRouter) {
             return AppBottomNavigationBar(
               currentIndex: tabsRouter.activeIndex,
               onTap: tabsRouter.setActiveIndex,
             );
           },
-        )
+        ),
+      ),
     );
   }
 }

@@ -1,12 +1,15 @@
+import 'dart:async';
+
 import 'package:core/core.dart';
+import 'package:core_ui/core_ui.dart';
 import 'package:domain/domain.dart';
 
 part 'main_page_event.dart';
-
 part 'main_page_state.dart';
 
 class MainPageBloc extends Bloc<MainPageEvent, MainPageState> {
   final FetchDishesUseCase _fetchDishesUseCase;
+  StreamSubscription<ConnectivityResult>? streamSubscription;
 
   MainPageBloc({
     required FetchDishesUseCase fetchDishesUseCase,
@@ -16,25 +19,38 @@ class MainPageBloc extends Bloc<MainPageEvent, MainPageState> {
             dishes: const <Dish>[],
             currentDishes: const <Dish>[],
             isLoading: true,
+            isInternetConnection: true,
           ),
         ) {
     on<InitEvent>(_onInit);
-    on<FetchDishes>(_onFetchDishes);
-    on<ChangeCurrentDishes>(_onChangeCurrentDishes);
+    on<FetchDishesEvent>(_onFetchDishes);
+    on<ChangeCurrentDishesEvent>(_onChangeCurrentDishes);
+    on<CheckInternetConnectionEvent>(_onCheckInternetConnection);
 
     add(const InitEvent());
+
+    streamSubscription = Connectivity()
+        .onConnectivityChanged
+        .listen((ConnectivityResult result) {
+      add(const CheckInternetConnectionEvent());
+    });
   }
 
-  void _onInit(
+  Future<void> _onInit(
     InitEvent event,
     Emitter<MainPageState> emit,
-  ) {
-    emit(state.copyWith(isLoading: true));
-    add(const FetchDishes());
+  ) async {
+    add(const CheckInternetConnectionEvent());
+    emit(
+      state.copyWith(
+        isLoading: true,
+      ),
+    );
+    add(const FetchDishesEvent());
   }
 
   Future<void> _onFetchDishes(
-    FetchDishes event,
+    FetchDishesEvent event,
     Emitter<MainPageState> emit,
   ) async {
     final List<Dish> dishes = await _fetchDishesUseCase.execute(
@@ -46,11 +62,11 @@ class MainPageBloc extends Bloc<MainPageEvent, MainPageState> {
         dishes: dishes,
       ),
     );
-    add(ChangeCurrentDishes(category: 'Donut'));
+    add(ChangeCurrentDishesEvent(category: AppString.donut));
   }
 
   Future<void> _onChangeCurrentDishes(
-    ChangeCurrentDishes event,
+    ChangeCurrentDishesEvent event,
     Emitter<MainPageState> emit,
   ) async {
     emit(state.copyWith(isLoading: true));
@@ -65,6 +81,17 @@ class MainPageBloc extends Bloc<MainPageEvent, MainPageState> {
         currentDishes: currentDishes,
         isLoading: false,
       ),
+    );
+  }
+
+  Future<void> _onCheckInternetConnection(
+    CheckInternetConnectionEvent event,
+    Emitter<MainPageState> emit,
+  ) async {
+    final bool isInternetConnection =
+        await InternetConnection.isInternetConnection();
+    emit(
+      state.copyWith(isInternetConnection: isInternetConnection),
     );
   }
 }

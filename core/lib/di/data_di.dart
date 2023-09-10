@@ -1,7 +1,11 @@
-import 'package:core/di/app_di.dart';
+import 'package:core/core.dart';
 import 'package:data/data.dart';
+import 'package:data/entities/cart/cart_dish_entity.dart';
+import 'package:data/entities/dishes/entities/dish_entity.dart';
 import 'package:data/mappers/mappers.dart';
+import 'package:data/repositories/cart_repository_impl.dart';
 import 'package:data/repositories/dishes_repository_impl.dart';
+import 'package:data/repositories/settings_repository_impl.dart';
 import 'package:domain/domain.dart';
 
 final DataDI dataDI = DataDI();
@@ -12,9 +16,31 @@ class DataDI {
       () => MapperFactory(),
     );
 
+    appLocator.registerLazySingleton<DishEntityAdapter>(
+      () => DishEntityAdapter(),
+    );
+
+    appLocator.registerLazySingleton<CartDishEntityAdapter>(
+      () => CartDishEntityAdapter(),
+    );
+
+    await Hive.initFlutter();
+    Hive.registerAdapter(
+      appLocator.get<DishEntityAdapter>(),
+    );
+    Hive.registerAdapter(
+      appLocator.get<CartDishEntityAdapter>(),
+    );
+
     ///Providers
     appLocator.registerLazySingleton<FirebaseProvider>(
       () => FirebaseProvider(
+        mapper: appLocator.get<MapperFactory>(),
+      ),
+    );
+
+    appLocator.registerLazySingleton<HiveProvider>(
+      () => HiveProvider(
         mapper: appLocator.get<MapperFactory>(),
       ),
     );
@@ -26,10 +52,73 @@ class DataDI {
       ),
     );
 
+    appLocator.registerLazySingleton<FetchCartDishesUseCase>(
+      () => FetchCartDishesUseCase(
+        cartRepository: appLocator.get<CartRepository>(),
+      ),
+    );
+
+    appLocator.registerLazySingleton<AddToCartUseCase>(
+      () => AddToCartUseCase(
+        cartRepository: appLocator.get<CartRepository>(),
+      ),
+    );
+
+    appLocator.registerLazySingleton<RemoveFromCartUseCase>(
+      () => RemoveFromCartUseCase(
+        cartRepository: appLocator.get<CartRepository>(),
+      ),
+    );
+
+    appLocator.registerLazySingleton<ClearCartUseCase>(
+      () => ClearCartUseCase(
+        cartRepository: appLocator.get<CartRepository>(),
+      ),
+    );
+
+    appLocator.registerLazySingleton<CheckThemeUseCase>(
+      () => CheckThemeUseCase(
+        settingsRepository: appLocator.get<SettingsRepository>(),
+      ),
+    );
+
+    appLocator.registerLazySingleton<SetThemeUseCase>(
+      () => SetThemeUseCase(
+        settingsRepository: appLocator.get<SettingsRepository>(),
+      ),
+    );
+
+    appLocator.registerLazySingleton<CheckFontSizeUseCase>(
+      () => CheckFontSizeUseCase(
+        settingsRepository: appLocator.get<SettingsRepository>(),
+      ),
+    );
+
+    appLocator.registerLazySingleton<SetFontSizeUseCase>(
+      () => SetFontSizeUseCase(
+        settingsRepository: appLocator.get<SettingsRepository>(),
+      ),
+    );
+
     ///Repositories
     appLocator.registerLazySingleton<DishesRepository>(
       () => DishesRepositoryImpl(
         firebaseProvider: appLocator.get<FirebaseProvider>(),
+        hiveProvider: appLocator.get<HiveProvider>(),
+        mapper: appLocator.get<MapperFactory>(),
+      ),
+    );
+
+    appLocator.registerLazySingleton<CartRepository>(
+      () => CartRepositoryImpl(
+        mapper: appLocator.get<MapperFactory>(),
+        hiveProvider: appLocator.get<HiveProvider>(),
+      ),
+    );
+
+    appLocator.registerLazySingleton<SettingsRepository>(
+      () => SettingsRepositoryImpl(
+        hiveProvider: appLocator.get<HiveProvider>(),
       ),
     );
   }

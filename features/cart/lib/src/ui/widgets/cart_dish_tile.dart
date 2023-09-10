@@ -16,6 +16,8 @@ class CartDishTile extends StatelessWidget {
   Widget build(BuildContext context) {
     final CartBloc cartBloc = BlocProvider.of<CartBloc>(context);
     final ThemeData themeData = Theme.of(context);
+    final MediaQueryData mediaQueryData = MediaQuery.of(context);
+
     return Padding(
       padding: const EdgeInsets.only(
         top: AppPadding.padding5,
@@ -30,7 +32,10 @@ class CartDishTile extends StatelessWidget {
           ),
           child: Row(
             children: <Widget>[
-              MenuDishImage(imagePath: cartDish.dish.imagePath),
+              MenuDishImage(
+                imagePath: cartDish.dish.imagePath,
+                height: mediaQueryData.size.height * AppScale.scaleZero11,
+              ),
               Expanded(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,

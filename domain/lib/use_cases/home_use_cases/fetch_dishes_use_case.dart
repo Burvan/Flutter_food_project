@@ -11,6 +11,6 @@ class FetchDishesUseCase extends FutureUseCase<List<Dish>, NoParams> {
 
   @override
   Future<List<Dish>> execute(NoParams params) async {
-    return _dishRepository.fetchDishes(params);
+    return _dishRepository.fetchDishes();
   }
 }

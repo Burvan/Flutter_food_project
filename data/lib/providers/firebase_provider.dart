@@ -1,5 +1,5 @@
 import 'package:core/core.dart';
-import 'package:data/entities/dishes/dishes.dart';
+import 'package:data/entities/dishes/entities/dish_entity.dart';
 import 'package:data/mappers/mappers.dart';
 import 'package:domain/domain.dart' as domain;
 
@@ -12,7 +12,7 @@ class FirebaseProvider {
     required this.mapper,
   });
 
-  Future<List<domain.Dish>> fetchDishes() async {
+  Future<List<domain.Dish>>   fetchDishes() async {
     final DocumentSnapshot documentSnapshot =
         await collection.doc('dishes').get();
 

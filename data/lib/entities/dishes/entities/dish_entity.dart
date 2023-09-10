@@ -1,12 +1,27 @@
-part of dish_entity;
+import 'package:core/core.dart';
+part 'dish_entity.g.dart';
 
+@HiveType(typeId: 2)
 class DishEntity {
+  @HiveField(0)
   final int id;
+
+  @HiveField(1)
   final String category;
+
+  @HiveField(2)
   final String imagePath;
+
+  @HiveField(3)
   final double cost;
+
+  @HiveField(4)
   final String name;
+
+  @HiveField(5)
   final String description;
+
+  @HiveField(6)
   final List<String>? ingredients;
 
   DishEntity({

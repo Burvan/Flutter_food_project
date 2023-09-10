@@ -3,11 +3,14 @@ import 'package:flutter/material.dart';
 
 class TotalCost extends StatelessWidget {
   final double totalCost;
-  final VoidCallback onPressed;
+  final VoidCallback onMakeAnOrderPressed;
+  final VoidCallback onClearCartPressed;
+
   const TotalCost({
     Key? key,
     required this.totalCost,
-    required this.onPressed,
+    required this.onMakeAnOrderPressed,
+    required this.onClearCartPressed,
   }) : super(key: key);
 
   @override
@@ -42,11 +45,26 @@ class TotalCost extends StatelessWidget {
                 ),
               ],
             ),
-            ElevatedButton(
-              onPressed: onPressed,
-              child: const Text(
-                AppString.makeAnOrder,
-              ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: <Widget>[
+                ElevatedButton(
+                  onPressed: onClearCartPressed,
+                  style: const ButtonStyle(
+                    backgroundColor:
+                        MaterialStatePropertyAll(AppColors.lightGrey),
+                  ),
+                  child: const Text(
+                    AppString.clearCart,
+                  ),
+                ),
+                ElevatedButton(
+                  onPressed: onMakeAnOrderPressed,
+                  child: const Text(
+                    AppString.makeAnOrder,
+                  ),
+                ),
+              ],
             ),
           ],
         ),

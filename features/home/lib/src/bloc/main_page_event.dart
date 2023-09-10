@@ -8,14 +8,18 @@ class InitEvent extends MainPageEvent {
   const InitEvent();
 }
 
-class FetchDishes extends MainPageEvent {
-  const FetchDishes();
+class FetchDishesEvent extends MainPageEvent {
+  const FetchDishesEvent();
 }
 
-class ChangeCurrentDishes extends MainPageEvent {
+class ChangeCurrentDishesEvent extends MainPageEvent {
   final String category;
 
-  ChangeCurrentDishes({
+  ChangeCurrentDishesEvent({
     required this.category,
   });
+}
+
+class CheckInternetConnectionEvent extends MainPageEvent {
+  const CheckInternetConnectionEvent();
 }

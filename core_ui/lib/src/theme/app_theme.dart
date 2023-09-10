@@ -20,6 +20,19 @@ class AppTheme {
           backgroundColor: MaterialStatePropertyAll(AppColors.brightPink),
         ),
       ),
+      switchTheme: const SwitchThemeData(
+        trackColor: MaterialStatePropertyAll(AppColors.lightPink),
+        thumbColor: MaterialStatePropertyAll(AppColors.gentlyPink),
+      ),
+      sliderTheme: const SliderThemeData(
+        activeTrackColor: AppColors.gentlyPink,
+        thumbColor: AppColors.gentlyPink,
+        inactiveTrackColor: AppColors.lightPink,
+      ),
+      progressIndicatorTheme: const ProgressIndicatorThemeData(
+        color: AppColors.lightPink,
+        circularTrackColor: AppColors.brightPink,
+      ),
       bottomNavigationBarTheme: const BottomNavigationBarThemeData(
           backgroundColor: AppColors.white,
           unselectedItemColor: AppColors.lightGrey,
@@ -45,6 +58,19 @@ class AppTheme {
         style: ButtonStyle(
           backgroundColor: MaterialStatePropertyAll(AppColors.indigo),
         ),
+      ),
+      switchTheme: const SwitchThemeData(
+        trackColor: MaterialStatePropertyAll(AppColors.lightGrey),
+        thumbColor: MaterialStatePropertyAll(AppColors.indigo),
+      ),
+      sliderTheme: const SliderThemeData(
+        activeTrackColor: AppColors.indigo,
+        thumbColor: AppColors.indigo,
+        inactiveTrackColor: AppColors.lightGrey,
+      ),
+      progressIndicatorTheme: const ProgressIndicatorThemeData(
+        color: AppColors.lightGrey,
+        circularTrackColor: AppColors.indigo,
       ),
       bottomNavigationBarTheme: const BottomNavigationBarThemeData(
           backgroundColor: AppColors.darkGrey,

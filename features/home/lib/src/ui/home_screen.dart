@@ -1,3 +1,4 @@
+import 'package:another_flushbar/flushbar.dart';
 import 'package:core/core.dart';
 import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
@@ -15,14 +16,26 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final ThemeData themeData = Theme.of(context);
 
-    return BlocBuilder<MainPageBloc, MainPageState>(
-      builder: (context, state) {
+    return BlocConsumer<MainPageBloc, MainPageState>(
+      listenWhen: (MainPageState previous, MainPageState current) =>
+          previous.isInternetConnection != current.isInternetConnection,
+      listener: (_, MainPageState state) {
+        if (!state.isInternetConnection) {
+          Flushbar(
+            messageText: const Text(
+              AppString.isNotInternet,
+              style: AppTextTheme.font18Red,
+            ),
+            flushbarPosition: FlushbarPosition.TOP,
+            padding: const EdgeInsets.all(AppPadding.padding20),
+            duration: const Duration(seconds: 3),
+          ).show(context);
+        }
+      },
+      builder: (_, MainPageState state) {
         if (state.isLoading) {
           return const Center(
-            child: CircularProgressIndicator(
-              color: AppColors.lightPink,
-              backgroundColor: AppColors.brightPink,
-            ),
+            child: CircularProgressIndicator(),
           );
         }
         return DefaultTabController(
@@ -39,22 +52,24 @@ class HomeScreen extends StatelessWidget {
                     tabs: _menuTabs
                         .map(
                           (MenuTabType tab) => MenuTab(
-                        iconPath: tab.imagePath,
-                      ),
-                    )
+                            iconPath: tab.imagePath,
+                          ),
+                        )
                         .toList(),
                     onTap: (int index) => context.read<MainPageBloc>().add(
-                      ChangeCurrentDishes(
-                        category: _menuTabs[index].categoryName,
-                      ),
-                    ),
+                          ChangeCurrentDishesEvent(
+                            category: _menuTabs[index].categoryName,
+                          ),
+                        ),
                   ),
                   Expanded(
                     child: GridView.builder(
                       itemCount: state.currentDishes.length,
-                      padding: const EdgeInsets.all(AppPadding.padding12),
+                      padding: const EdgeInsets.all(
+                        AppPadding.padding12,
+                      ),
                       gridDelegate:
-                      const SliverGridDelegateWithFixedCrossAxisCount(
+                          const SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisCount: 2,
                         childAspectRatio: 1 / 1.6,
                       ),

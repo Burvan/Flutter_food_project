@@ -13,6 +13,8 @@ class DetailedDishScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final ThemeData themeData = Theme.of(context);
+    final MediaQueryData mediaQueryData = MediaQuery.of(context);
+
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
@@ -29,8 +31,9 @@ class DetailedDishScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Center(
-                  child: SelectedDishImage(
+                  child: MenuDishImage(
                     imagePath: dish.imagePath,
+                    height: mediaQueryData.size.height * AppScale.scaleZero13,
                   ),
                 ),
                 const SizedBox(height: AppSize.size25),

@@ -1,5 +1,6 @@
 class AppString {
   static const String byn = ' BYN';
+  static const String donut = 'Donut';
   static const String youHaveAdded = 'You have added \'';
   static const String toTheCart = '\' to the cart!';
   static const String add = 'Add';
@@ -11,4 +12,12 @@ class AppString {
   static const String ingredients = 'Ingredients';
   static const String appBarTitle = 'Delicious and ellipsis...';
   static const String errorMessage = 'An error occurred: ';
+  static const String isInternet = 'Internet connection is available';
+  static const String isNotInternet = 'Internet connection is not available!';
+  static const String useADarkTheme = 'Use a dark theme';
+  static const String fontSize = 'Font size';
+  static const String contactUs = 'Contact us';
+  static const String contactUsLink =
+      'https://www.instagram.com/_burbon__/?hl=ru';
+  static const String clearCart = 'Clear cart';
 }
