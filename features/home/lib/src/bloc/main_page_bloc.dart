@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:core/core.dart';
+import 'package:core_ui/core_ui.dart';
 import 'package:domain/domain.dart';
 
 part 'main_page_event.dart';
@@ -61,7 +62,7 @@ class MainPageBloc extends Bloc<MainPageEvent, MainPageState> {
         dishes: dishes,
       ),
     );
-    add(ChangeCurrentDishesEvent(category: 'Donut'));
+    add(ChangeCurrentDishesEvent(category: AppString.donut));
   }
 
   Future<void> _onChangeCurrentDishes(

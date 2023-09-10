@@ -8,6 +8,6 @@ class FetchCartDishesUseCase extends FutureUseCase<List<CartDish>, NoParams> {
 
   @override
   Future<List<CartDish>> execute(NoParams params) async {
-    return _cartRepository.fetchCartDishes(params);
+    return _cartRepository.fetchCartDishes();
   }
 }

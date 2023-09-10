@@ -45,14 +45,6 @@ class DataDI {
       ),
     );
 
-    appLocator.registerLazySingleton<CartHiveProvider>(
-      () => CartHiveProvider(),
-    );
-
-    appLocator.registerLazySingleton<SettingsHiveProvider>(
-      () => SettingsHiveProvider(),
-    );
-
     ///UseCases
     appLocator.registerLazySingleton<FetchDishesUseCase>(
       () => FetchDishesUseCase(
@@ -120,13 +112,13 @@ class DataDI {
     appLocator.registerLazySingleton<CartRepository>(
       () => CartRepositoryImpl(
         mapper: appLocator.get<MapperFactory>(),
-        cartHiveProvider: appLocator.get<CartHiveProvider>(),
+        hiveProvider: appLocator.get<HiveProvider>(),
       ),
     );
 
     appLocator.registerLazySingleton<SettingsRepository>(
       () => SettingsRepositoryImpl(
-        settingsHiveProvider: appLocator.get<SettingsHiveProvider>(),
+        hiveProvider: appLocator.get<HiveProvider>(),
       ),
     );
   }

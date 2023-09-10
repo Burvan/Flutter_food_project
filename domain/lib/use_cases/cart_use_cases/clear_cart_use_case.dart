@@ -8,6 +8,6 @@ class ClearCartUseCase extends FutureUseCase<void, NoParams> {
 
   @override
   Future<void> execute(NoParams params) {
-    return _cartRepository.clearCart(params);
+    return _cartRepository.clearCart();
   }
 }

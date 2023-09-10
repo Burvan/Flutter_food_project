@@ -11,6 +11,7 @@ class CartScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final ThemeData themeData = Theme.of(context);
+    final MediaQueryData mediaQuery = MediaQuery.of(context);
     final CartBloc bloc = BlocProvider.of(context);
 
     return Scaffold(
@@ -41,7 +42,7 @@ class CartScreen extends StatelessWidget {
           } else {
             return Center(
               child: Container(
-                width: MediaQuery.of(context).size.width / AppScale.scaleOne5,
+                width: mediaQuery.size.width / AppScale.scaleOne5,
                 decoration: BoxDecoration(
                   color: themeData.cardColor,
                   borderRadius: BorderRadius.circular(

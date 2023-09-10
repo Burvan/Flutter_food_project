@@ -19,9 +19,12 @@ class DishesRepositoryImpl implements domain.DishesRepository {
         _hiveProvider = hiveProvider;
 
   @override
-  Future<List<domain.Dish>> fetchDishes(domain.NoParams payload) async {
+  Future<List<domain.Dish>> fetchDishes() async {
     final List<Dish> dishes;
-    if (await InternetConnection.isInternetConnection()) {
+    final bool isInternetConnection =
+        await InternetConnection.isInternetConnection();
+
+    if (isInternetConnection) {
       dishes = await _firebaseProvider.fetchDishes();
       await _hiveProvider.saveDishesToCache(dishes);
     } else {

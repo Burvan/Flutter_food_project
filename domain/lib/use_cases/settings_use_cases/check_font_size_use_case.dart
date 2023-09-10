@@ -8,6 +8,6 @@ class CheckFontSizeUseCase extends FutureUseCase<double, NoParams> {
 
   @override
   Future<double> execute(NoParams params) {
-    return _settingsRepository.checkFontSize(params);
+    return _settingsRepository.checkFontSize();
   }
 }

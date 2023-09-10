@@ -1,8 +1,6 @@
-import 'package:domain/domain.dart';
-
 abstract class SettingsRepository {
-  Future<bool> checkTheme(NoParams payload);
+  Future<bool> checkTheme();
   Future<void> setTheme(bool isDark);
-  Future<double> checkFontSize(NoParams payload);
+  Future<double> checkFontSize();
   Future<void> setFontSize(double textScale);
 }

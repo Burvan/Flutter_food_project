@@ -13,7 +13,7 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
-      providers: [
+      providers: <BlocProvider>[
         BlocProvider<MainPageBloc>(
           create: (_) => MainPageBloc(
             fetchDishesUseCase: appLocator.get<FetchDishesUseCase>(),
@@ -36,7 +36,7 @@ class HomePage extends StatelessWidget {
             CartScreenRoute(),
             SettingsScreenRoute(),
           ],
-          appBarBuilder: (context, tabsRouter) {
+          appBarBuilder: (_, TabsRouter tabsRouter) {
             return AppBar(
               title: const Text(
                 AppString.appBarTitle,
@@ -46,7 +46,7 @@ class HomePage extends StatelessWidget {
             );
           },
           bottomNavigationBuilder:
-              (BuildContext context, TabsRouter tabsRouter) {
+              (_, TabsRouter tabsRouter) {
             return AppBottomNavigationBar(
               currentIndex: tabsRouter.activeIndex,
               onTap: tabsRouter.setActiveIndex,

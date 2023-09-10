@@ -65,7 +65,9 @@ class HomeScreen extends StatelessWidget {
                   Expanded(
                     child: GridView.builder(
                       itemCount: state.currentDishes.length,
-                      padding: const EdgeInsets.all(AppPadding.padding12),
+                      padding: const EdgeInsets.all(
+                        AppPadding.padding12,
+                      ),
                       gridDelegate:
                           const SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisCount: 2,

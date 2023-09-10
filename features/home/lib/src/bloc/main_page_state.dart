@@ -34,4 +34,5 @@ class MainPageState extends Equatable {
     isLoading,
     isInternetConnection,
   ];
+
 }

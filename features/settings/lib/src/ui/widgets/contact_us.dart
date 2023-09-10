@@ -8,7 +8,7 @@ class ContactUs extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Link(
-        uri: Uri.parse('https://www.instagram.com/_burbon__/?hl=ru'),
+        uri: Uri.parse(AppString.contactUsLink),
         builder: (_, FollowLink? followLink) {
           return Padding(
             padding: const EdgeInsets.only(bottom: AppPadding.padding25),

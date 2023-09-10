@@ -1,16 +1,15 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:core_ui/core_ui.dart';
 
 class MenuDishImage extends StatelessWidget {
   final String imagePath;
   final double height;
 
   const MenuDishImage({
-    Key? key,
     required this.height,
     required this.imagePath,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {

@@ -9,6 +9,6 @@ class CheckThemeUseCase extends FutureUseCase<bool, NoParams> {
 
   @override
   Future<bool> execute(NoParams params) async{
-    return _settingsRepository.checkTheme(params);
+    return _settingsRepository.checkTheme();
   }
 }
