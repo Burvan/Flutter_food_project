@@ -8,6 +8,8 @@ export 'package:hive/hive.dart';
 export 'package:hive_flutter/hive_flutter.dart';
 export 'package:connectivity_plus/connectivity_plus.dart';
 export 'package:core/internet_connection/internet_connection.dart';
+export 'auth_params/sign_in_params.dart';
+export 'auth_params/sign_up_params.dart';
 
 export 'di/app_di.dart';
 export 'di/data_di.dart';

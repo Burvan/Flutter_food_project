@@ -4,11 +4,13 @@ library domain;
 export 'models/dishes/dish.dart';
 export 'models/cart/cart.dart';
 export 'models/cart/cart_dish.dart';
+export 'models/user/user.dart';
 
 ///Repositories
 export 'repositories/dishes_repository.dart';
 export 'repositories/cart_repository.dart';
 export 'repositories/settings_repository.dart';
+export 'repositories/auth_repository.dart';
 
 ///Use cases
 export 'use_cases/home_use_cases/fetch_dishes_use_case.dart';
