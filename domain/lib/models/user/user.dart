@@ -21,7 +21,7 @@ class User {
     );
   }
 
-  List<Object?> get props => [
+  List<Object?> get props => <Object?>[
     id,
     name,
     email,

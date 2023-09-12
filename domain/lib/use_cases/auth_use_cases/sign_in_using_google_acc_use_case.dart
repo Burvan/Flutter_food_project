@@ -1,9 +1,9 @@
 import 'package:domain/domain.dart';
 
-class SignInUseCase extends FutureUseCase<User, NoParams> {
+class SignInUsingGoogleAccUseCase extends FutureUseCase<User, NoParams> {
   final AuthRepository _authRepository;
 
-  SignInUseCase({
+  SignInUsingGoogleAccUseCase({
     required AuthRepository authRepository,
   }) : _authRepository = authRepository;
 

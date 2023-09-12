@@ -13,6 +13,10 @@ export 'repositories/settings_repository.dart';
 export 'repositories/auth_repository.dart';
 
 ///Use cases
+export 'use_cases/auth_use_cases/sign_in_use_case.dart';
+export 'use_cases/auth_use_cases/sign_in_using_google_acc_use_case.dart';
+export 'use_cases/auth_use_cases/sign_up_use_case.dart';
+export 'use_cases/auth_use_cases/sign_out_use_case.dart';
 export 'use_cases/home_use_cases/fetch_dishes_use_case.dart';
 export 'use_cases/cart_use_cases/fetch_cart_dishes_use_case.dart';
 export 'use_cases/cart_use_cases/add_to_cart_use_case.dart';
