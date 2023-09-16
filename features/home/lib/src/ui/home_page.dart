@@ -30,11 +30,11 @@ class HomePage extends StatelessWidget {
       ],
       child: SafeArea(
         child: AutoTabsScaffold(
-          routes: const [
+          routes: [
             HomeScreenRoute(),
-            OrderHistoryScreenRoute(),
-            CartScreenRoute(),
-            SettingsScreenRoute(),
+            const OrderHistoryScreenRoute(),
+            const CartScreenRoute(),
+            const SettingsScreenRoute(),
           ],
           appBarBuilder: (_, TabsRouter tabsRouter) {
             return AppBar(

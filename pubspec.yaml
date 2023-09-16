@@ -26,6 +26,8 @@ dependencies:
     path: features/settings
   cart:
     path: features/cart
+  auth:
+    path: features/auth
 
 
 

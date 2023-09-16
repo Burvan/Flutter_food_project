@@ -8,7 +8,7 @@ class CartRepositoryImpl implements domain.CartRepository {
   final HiveProvider _hiveProvider;
   final MapperFactory mapper;
 
-  CartRepositoryImpl({
+  const CartRepositoryImpl({
     required this.mapper,
     required HiveProvider hiveProvider,
   }) : _hiveProvider = hiveProvider;

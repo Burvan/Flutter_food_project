@@ -1,18 +1,20 @@
 import 'package:domain/domain.dart';
 
 abstract class AuthRepository {
-  Future<User> signIn({
+  Future<AppUser> signIn({
     required String email,
     required String password,
   });
 
-  Future<User> signInUsingGoogleAcc();
+  Future<AppUser> signInUsingGoogleAcc();
 
-  Future<User> signUp({
+  Future<AppUser> signUp({
     required String name,
     required String email,
     required String password,
   });
 
   Future<void> signOut();
+
+  Future<AppUser> getStoredUser();
 }
