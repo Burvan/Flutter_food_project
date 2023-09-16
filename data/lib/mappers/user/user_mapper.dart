@@ -1,9 +1,9 @@
 part of mappers;
 
-class UserMapper extends Mapper<UserEntity, domain.User> {
+class UserMapper extends Mapper<UserEntity, AppUser> {
   @override
-  domain.User fromEntity(UserEntity entity) {
-    return domain.User(
+  AppUser fromEntity(UserEntity entity) {
+    return AppUser(
       id: entity.id,
       name: entity.name,
       email: entity.email,
@@ -11,7 +11,7 @@ class UserMapper extends Mapper<UserEntity, domain.User> {
   }
 
   @override
-  UserEntity toEntity(domain.User item) {
+  UserEntity toEntity(AppUser item) {
     return UserEntity(
       id: item.id,
       name: item.name,

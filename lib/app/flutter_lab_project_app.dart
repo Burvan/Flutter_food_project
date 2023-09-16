@@ -1,3 +1,4 @@
+import 'package:auth/auth.dart';
 import 'package:core/core.dart';
 import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
@@ -10,13 +11,28 @@ class FlutterLabApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider<SettingsBloc>(
-      create: (_) => SettingsBloc(
-        setThemeUseCase: appLocator.get<SetThemeUseCase>(),
-        checkThemeUseCase: appLocator.get<CheckThemeUseCase>(),
-        setFontSizeUseCase: appLocator.get<SetFontSizeUseCase>(),
-        checkFontSizeUseCase: appLocator.get<CheckFontSizeUseCase>(),
-      ),
+    return MultiBlocProvider(
+      providers: <BlocProvider>[
+        BlocProvider<AuthBloc>(
+          create: (_) => AuthBloc(
+            appRouter: appLocator.get<AppRouter>(),
+            signInUseCase: appLocator.get<SignInUseCase>(),
+            signInUsingGoogleAccUseCase: appLocator.get<SignInUsingGoogleAccUseCase>(),
+            signUpUseCase: appLocator.get<SignUpUseCase>(),
+            signOutUseCase: appLocator.get<SignOutUseCase>(),
+            getStoredUserUseCase: appLocator.get<GetStoredUserUseCase>(),
+          ),
+        ),
+        BlocProvider<SettingsBloc>(
+          create: (_) =>
+              SettingsBloc(
+                setThemeUseCase: appLocator.get<SetThemeUseCase>(),
+                checkThemeUseCase: appLocator.get<CheckThemeUseCase>(),
+                setFontSizeUseCase: appLocator.get<SetFontSizeUseCase>(),
+                checkFontSizeUseCase: appLocator.get<CheckFontSizeUseCase>(),
+              ),
+        ),
+      ],
       child: BlocBuilder<SettingsBloc, SettingsState>(
         builder: (BuildContext context, SettingsState state) {
           return MaterialApp.router(
@@ -34,7 +50,7 @@ class FlutterLabApp extends StatelessWidget {
             darkTheme: state.isDark ? AppTheme.darkTheme : state.themeData,
             routerDelegate: appLocator.get<AppRouter>().delegate(),
             routeInformationParser:
-                appLocator.get<AppRouter>().defaultRouteParser(),
+            appLocator.get<AppRouter>().defaultRouteParser(),
           );
         },
       ),

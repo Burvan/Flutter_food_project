@@ -8,7 +8,7 @@ class SignOutUseCase extends FutureUseCase<void, NoParams> {
   }) : _authRepository = authRepository;
 
   @override
-  Future<void> execute(NoParams params) {
+  Future<void> execute(NoParams params) async {
     return _authRepository.signOut();
   }
 }

@@ -1,20 +1,20 @@
-class User {
+class AppUser {
   final String id;
   final String name;
   final String email;
 
-  const User({
+  const AppUser({
     required this.id,
     required this.name,
     required this.email,
   });
 
-  User copyWith({
+  AppUser copyWith({
     String? id,
     String? name,
     String? email,
   }) {
-    return User(
+    return AppUser(
       id: id ?? this.id,
       name: name ?? this.name,
       email: email ?? this.email,

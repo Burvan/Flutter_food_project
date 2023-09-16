@@ -1,7 +1,7 @@
 import 'package:core/core.dart';
 import 'package:domain/domain.dart';
 
-class SignInUseCase extends FutureUseCase<User, SignInParams> {
+class SignInUseCase extends FutureUseCase<AppUser, SignInParams> {
   final AuthRepository _authRepository;
 
   SignInUseCase({
@@ -9,7 +9,7 @@ class SignInUseCase extends FutureUseCase<User, SignInParams> {
   }) : _authRepository = authRepository;
 
   @override
-  Future<User> execute(SignInParams params) {
+  Future<AppUser> execute(SignInParams params) async {
     return _authRepository.signIn(
       email: params.email,
       password: params.password,
