@@ -45,6 +45,7 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
     );
     emit(
       state.copyWith(
+        isDark: isDark,
         themeData: isDark ? AppTheme.darkTheme : AppTheme.lightTheme,
         textScale: textScale,
       ),

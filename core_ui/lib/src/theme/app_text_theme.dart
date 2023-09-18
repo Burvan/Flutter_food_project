@@ -15,9 +15,24 @@ class AppTextTheme {
     fontSize: 22,
   );
 
+  static const TextStyle font16Pink = TextStyle(
+    fontSize: 16,
+    color: AppColors.gentlyPink,
+  );
+
   static const TextStyle font18Green = TextStyle(
     fontSize: 18,
     color: AppColors.green,
+  );
+
+  static const TextStyle font18Grey = TextStyle(
+    fontSize: 18,
+    color: AppColors.lightGrey,
+  );
+
+  static const TextStyle font18Pink = TextStyle(
+    fontSize: 18,
+    color: AppColors.gentlyPink,
   );
 
   static const TextStyle font18Red = TextStyle(
@@ -52,6 +67,18 @@ class AppTextTheme {
   static const TextStyle font32Bold = TextStyle(
     fontSize: 32,
     fontWeight: FontWeight.bold,
+  );
+
+  static const TextStyle font28WhiteBold = TextStyle(
+    fontSize: 28,
+    fontWeight: FontWeight.bold,
+    color: AppColors.white,
+  );
+
+  static const TextStyle font22WhiteBold = TextStyle(
+    fontSize: 22,
+    fontWeight: FontWeight.bold,
+    color: AppColors.white,
   );
 
 }
