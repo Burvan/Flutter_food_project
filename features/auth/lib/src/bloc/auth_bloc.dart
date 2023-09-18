@@ -57,7 +57,6 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
             email: '',
           ),
           isLogged: false,
-
         ),
       );
     } else {
@@ -154,7 +153,10 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       const NoParams(),
     );
     emit(
-      state.copyWith(isLogged: false, formState: const InitFormState()),
+      state.copyWith(
+        isLogged: false,
+        formState: const InitFormState(),
+      ),
     );
   }
 

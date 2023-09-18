@@ -97,6 +97,7 @@ class _SignUpFormState extends State<SignUpForm> {
                         return null;
                       }
                     },
+                    helperText: AppString.helperTextForPassword,
                     labelText: AppString.password,
                     obscureText: true,
                     icon: const Icon(Icons.password),

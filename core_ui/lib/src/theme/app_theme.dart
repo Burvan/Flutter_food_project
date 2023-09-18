@@ -32,6 +32,7 @@ class AppTheme {
         ),
         suffixIconColor: AppColors.gentlyPink,
         labelStyle: AppTextTheme.font16Pink,
+        helperStyle: AppTextTheme.font12SkyBlue,
       ),
       elevatedButtonTheme: const ElevatedButtonThemeData(
         style: ButtonStyle(

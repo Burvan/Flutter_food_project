@@ -38,4 +38,5 @@ class AppString {
   static const String signOut = 'Sign Out';
   static const String pleaseSignUpInApp = 'Please Sign Up in our application';
   static const String alreadyHaveAnAccount = 'Already have an Account?';
+  static const String helperTextForPassword = 'At least 6 characters';
 }

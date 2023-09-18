@@ -15,6 +15,11 @@ class AppTextTheme {
     fontSize: 22,
   );
 
+  static const TextStyle font12SkyBlue = TextStyle(
+    fontSize: 12,
+    color: AppColors.skyBlue,
+  );
+
   static const TextStyle font16Pink = TextStyle(
     fontSize: 16,
     color: AppColors.gentlyPink,
