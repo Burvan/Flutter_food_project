@@ -6,7 +6,7 @@ abstract class AuthRepository {
     required String password,
   });
 
-  Future<AppUser> signInUsingGoogleAcc();
+  Future<AppUser> googleSignIn();
 
   Future<AppUser> signUp({
     required String name,
@@ -15,6 +15,4 @@ abstract class AuthRepository {
   });
 
   Future<void> signOut();
-
-  Future<AppUser> getStoredUser();
 }

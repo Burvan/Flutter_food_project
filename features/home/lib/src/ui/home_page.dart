@@ -30,7 +30,7 @@ class HomePage extends StatelessWidget {
       ],
       child: SafeArea(
         child: AutoTabsScaffold(
-          routes: [
+          routes: <PageRouteInfo<dynamic>>[
             HomeScreenRoute(),
             const OrderHistoryScreenRoute(),
             const CartScreenRoute(),

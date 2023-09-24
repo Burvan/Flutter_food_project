@@ -16,17 +16,21 @@ class OfferAnotherScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
-      mainAxisAlignment: MainAxisAlignment.end,
+      mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
         Text(
           question,
-          style: AppTextTheme.font18Grey,
+          style: AppTextTheme.font16.copyWith(
+            color: AppColors.lightGrey,
+          ),
         ),
         TextButton(
           onPressed: onPressed,
           child: Text(
             buttonText,
-            style: AppTextTheme.font18Pink,
+            style: AppTextTheme.font16.copyWith(
+              color: AppColors.gentlyPink,
+            ),
           ),
         ),
       ],

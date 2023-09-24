@@ -4,7 +4,7 @@ import 'package:data/entities/user/user_entity.dart';
 class AuthProvider {
   final FirebaseAuth _firebaseAuth;
   final GoogleSignIn _googleSignIn;
-  final CollectionReference collection =
+  final CollectionReference _collection =
       FirebaseFirestore.instance.collection('users');
 
   AuthProvider({
@@ -13,17 +13,14 @@ class AuthProvider {
   })  : _firebaseAuth = firebaseAuth,
         _googleSignIn = googleSignIn;
 
-  Future<UserEntity> getUser({
+  Future<UserEntity> fetchUser({
     required String id,
   }) async {
-    final DocumentSnapshot documentSnapshot = await collection.doc(id).get();
-    final Object? data = documentSnapshot.data();
-    if (data != null && data is Map<String, dynamic>) {
-      final UserEntity userEntity = UserEntity(
-        id: id,
-        name: data['name'],
-        email: data['email'],
-      );
+    final DocumentSnapshot documentSnapshot = await _collection.doc(id).get();
+    final Map<String, dynamic>? data =
+        documentSnapshot.data() as Map<String, dynamic>?;
+    if (data != null && data.containsKey('users')) {
+      final UserEntity userEntity = UserEntity.fromJson(data);
       return userEntity;
     } else {
       final UserEntity userEntity = UserEntity(
@@ -40,7 +37,7 @@ class AuthProvider {
     required String email,
     required String name,
   }) async {
-    final DocumentSnapshot documentSnapshot = await collection.doc(id).get();
+    final DocumentSnapshot documentSnapshot = await _collection.doc(id).get();
 
     final Map<String, String> userData = {
       'id': id,
@@ -49,7 +46,7 @@ class AuthProvider {
     };
 
     if (!documentSnapshot.exists) {
-      collection.doc(id).set(userData);
+      _collection.doc(id).set(userData);
     }
   }
 
@@ -70,7 +67,7 @@ class AuthProvider {
       name: name,
     );
 
-    final UserEntity userEntity = await getUser(
+    final UserEntity userEntity = await fetchUser(
       id: credential.user?.uid ?? '',
     );
     return userEntity;
@@ -85,13 +82,13 @@ class AuthProvider {
       email: email,
       password: password,
     );
-    final UserEntity userEntity = await getUser(
+    final UserEntity userEntity = await fetchUser(
       id: credential.user?.uid ?? '',
     );
     return userEntity;
   }
 
-  Future<UserEntity> signInUsingGoogleAcc() async {
+  Future<UserEntity> googleSignIn() async {
     final GoogleSignInAccount? googleAcc = await _googleSignIn.signIn();
     final GoogleSignInAuthentication? googleSignInAuth =
         await googleAcc?.authentication;
@@ -109,7 +106,7 @@ class AuthProvider {
     );
 
     final UserEntity userEntity =
-        await getUser(id: userCredential.user?.uid ?? '');
+        await fetchUser(id: userCredential.user?.uid ?? '');
 
     return userEntity;
   }

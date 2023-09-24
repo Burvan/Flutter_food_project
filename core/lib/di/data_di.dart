@@ -1,11 +1,12 @@
 import 'package:core/core.dart';
+import 'package:core_ui/core_ui.dart';
 import 'package:data/data.dart';
 import 'package:data/entities/cart/cart_dish_entity.dart';
 import 'package:data/entities/dishes/entities/dish_entity.dart';
 import 'package:data/entities/user/user_entity.dart';
-import 'package:data/mappers/mappers.dart';
 import 'package:data/providers/auth_provider.dart';
 import 'package:data/repositories/auth_repository_impl.dart';
+import 'package:data/repositories/user_repository_impl.dart';
 import 'package:data/repositories/cart_repository_impl.dart';
 import 'package:data/repositories/dishes_repository_impl.dart';
 import 'package:data/repositories/settings_repository_impl.dart';
@@ -15,10 +16,6 @@ final DataDI dataDI = DataDI();
 
 class DataDI {
   Future<void> setupAppLocator() async {
-    appLocator.registerLazySingleton<MapperFactory>(
-      () => MapperFactory(),
-    );
-
     appLocator.registerLazySingleton<FirebaseAuth>(
       () => FirebaseAuth.instance,
     );
@@ -49,6 +46,21 @@ class DataDI {
     Hive.registerAdapter(
       appLocator.get<UserEntityAdapter>(),
     );
+    appLocator.registerLazySingleton<Box<UserEntity>>(
+      () => Hive.box<UserEntity>(AppString.userBoxName),
+    );
+    appLocator.registerLazySingleton<Box<DishEntity>>(
+      () => Hive.box<DishEntity>(AppString.dishesBoxName),
+    );
+    appLocator.registerLazySingleton<Box<CartDishEntity>>(
+      () => Hive.box<CartDishEntity>(AppString.cartBoxName),
+    );
+    appLocator.registerLazySingleton<Box<String>>(
+      () => Hive.box<String>(AppString.themeBoxName),
+    );
+    appLocator.registerLazySingleton<Box<double>>(
+      () => Hive.box<double>(AppString.fontSizeBoxName),
+    );
 
     ///Providers
     appLocator.registerLazySingleton<AuthProvider>(
@@ -59,14 +71,16 @@ class DataDI {
     );
 
     appLocator.registerLazySingleton<FirebaseProvider>(
-      () => FirebaseProvider(
-        mapper: appLocator.get<MapperFactory>(),
-      ),
+      () => FirebaseProvider(),
     );
 
     appLocator.registerLazySingleton<HiveProvider>(
       () => HiveProvider(
-        mapper: appLocator.get<MapperFactory>(),
+        userBox: appLocator.get<Box<UserEntity>>(),
+        dishBox: appLocator.get<Box<DishEntity>>(),
+        cartBox: appLocator.get<Box<CartDishEntity>>(),
+        themeBox: appLocator.get<Box<String>>(),
+        fontSizeBox: appLocator.get<Box<double>>(),
       ),
     );
 
@@ -77,8 +91,8 @@ class DataDI {
       ),
     );
 
-    appLocator.registerLazySingleton<SignInUsingGoogleAccUseCase>(
-      () => SignInUsingGoogleAccUseCase(
+    appLocator.registerLazySingleton<GoogleSignInUseCase>(
+      () => GoogleSignInUseCase(
         authRepository: appLocator.get<AuthRepository>(),
       ),
     );
@@ -97,7 +111,7 @@ class DataDI {
 
     appLocator.registerLazySingleton<GetStoredUserUseCase>(
       () => GetStoredUserUseCase(
-        authRepository: appLocator.get<AuthRepository>(),
+        userRepository: appLocator.get<UserRepository>(),
       ),
     );
 
@@ -158,9 +172,14 @@ class DataDI {
     ///Repositories
     appLocator.registerLazySingleton<AuthRepository>(
       () => AuthRepositoryImpl(
-        mapper: appLocator.get<MapperFactory>(),
         hiveProvider: appLocator.get<HiveProvider>(),
         authProvider: appLocator.get<AuthProvider>(),
+      ),
+    );
+
+    appLocator.registerLazySingleton<UserRepository>(
+      () => UserRepositoryImpl(
+        hiveProvider: appLocator.get<HiveProvider>(),
       ),
     );
 
@@ -168,13 +187,11 @@ class DataDI {
       () => DishesRepositoryImpl(
         firebaseProvider: appLocator.get<FirebaseProvider>(),
         hiveProvider: appLocator.get<HiveProvider>(),
-        mapper: appLocator.get<MapperFactory>(),
       ),
     );
 
     appLocator.registerLazySingleton<CartRepository>(
       () => CartRepositoryImpl(
-        mapper: appLocator.get<MapperFactory>(),
         hiveProvider: appLocator.get<HiveProvider>(),
       ),
     );

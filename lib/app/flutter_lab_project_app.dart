@@ -17,7 +17,7 @@ class FlutterLabApp extends StatelessWidget {
           create: (_) => AuthBloc(
             appRouter: appLocator.get<AppRouter>(),
             signInUseCase: appLocator.get<SignInUseCase>(),
-            signInUsingGoogleAccUseCase: appLocator.get<SignInUsingGoogleAccUseCase>(),
+            signInUsingGoogleAccUseCase: appLocator.get<GoogleSignInUseCase>(),
             signUpUseCase: appLocator.get<SignUpUseCase>(),
             signOutUseCase: appLocator.get<SignOutUseCase>(),
             getStoredUserUseCase: appLocator.get<GetStoredUserUseCase>(),

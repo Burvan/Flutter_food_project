@@ -25,7 +25,7 @@ class UserEntity {
     email,
   ];
 
-  factory UserEntity.fromJson(Map<String, dynamic> json){
+  factory UserEntity.fromJson(Map<String, dynamic> json) {
     return UserEntity(
       id: json['id'] as String,
       name: json['name'] as String,

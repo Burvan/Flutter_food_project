@@ -12,4 +12,3 @@ part 'dishes/dishes_mapper.dart';
 part 'cart/cart_dish_mapper.dart';
 part 'cart/cart_mapper.dart';
 part 'base_mappers.dart';
-part 'mapper_factory.dart';

@@ -1,21 +1,19 @@
 part of mappers;
 
-class UserMapper extends Mapper<UserEntity, AppUser> {
-  @override
-  AppUser fromEntity(UserEntity entity) {
-    return AppUser(
-      id: entity.id,
-      name: entity.name,
-      email: entity.email,
+abstract class UserMapper {
+  static UserEntity toEntity(AppUser user) {
+    return UserEntity(
+      id: user.id,
+      email: user.email,
+      name: user.name,
     );
   }
 
-  @override
-  UserEntity toEntity(AppUser item) {
-    return UserEntity(
-      id: item.id,
-      name: item.name,
-      email: item.email,
+  static AppUser fromEntity(UserEntity entity) {
+    return AppUser(
+      id: entity.id,
+      email: entity.email,
+      name: entity.name,
     );
   }
 }

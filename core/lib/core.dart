@@ -12,6 +12,8 @@ export 'package:core/internet_connection/internet_connection.dart';
 export 'package:google_sign_in/google_sign_in.dart';
 export 'auth_params/sign_in_params.dart';
 export 'auth_params/sign_up_params.dart';
+export 'utils/field_validator.dart';
+export 'hive_boxes/hive_boxes.dart';
 
 export 'di/app_di.dart';
 export 'di/data_di.dart';

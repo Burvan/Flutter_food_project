@@ -1,15 +1,15 @@
 import 'package:domain/domain.dart';
 
 class GetStoredUserUseCase extends FutureUseCase<AppUser, NoParams> {
-  final AuthRepository _authRepository;
+  final UserRepository _userRepository;
 
   GetStoredUserUseCase({
-    required AuthRepository authRepository,
-  }) : _authRepository = authRepository;
+    required UserRepository userRepository,
+  }) : _userRepository = userRepository;
 
   @override
-  Future<AppUser> execute(NoParams params) async {
-    return _authRepository.getStoredUser();
+  Future<AppUser> execute(NoParams params) {
+    return _userRepository.getStoredUser();
   }
 
 

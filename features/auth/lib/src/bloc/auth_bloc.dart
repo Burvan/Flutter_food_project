@@ -9,7 +9,7 @@ part 'auth_state.dart';
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
   final AppRouter _appRouter;
   final SignInUseCase _signInUseCase;
-  final SignInUsingGoogleAccUseCase _signInUsingGoogleAccUseCase;
+  final GoogleSignInUseCase _signInUsingGoogleAccUseCase;
   final SignUpUseCase _signUpUseCase;
   final SignOutUseCase _signOutUseCase;
   final GetStoredUserUseCase _getStoredUserUseCase;
@@ -17,7 +17,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   AuthBloc({
     required AppRouter appRouter,
     required SignInUseCase signInUseCase,
-    required SignInUsingGoogleAccUseCase signInUsingGoogleAccUseCase,
+    required GoogleSignInUseCase signInUsingGoogleAccUseCase,
     required SignUpUseCase signUpUseCase,
     required SignOutUseCase signOutUseCase,
     required GetStoredUserUseCase getStoredUserUseCase,
@@ -37,6 +37,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     on<SignOutEvent>(_onSignOut);
     on<NavigateToHomeScreenEvent>(_onNavigateToHomeScreen);
     on<NavigateToSignInScreenEvent>(_onNavigateToSignInScreen);
+    on<NavigateToSignUpScreenEvent>(_onNavigateToSignUpScreen);
 
     add(const InitAuthEvent());
   }
@@ -172,5 +173,12 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     Emitter<AuthState> emit,
   ) async {
     _appRouter.replace(const SignInScreenRoute());
+  }
+
+  Future<void> _onNavigateToSignUpScreen(
+    NavigateToSignUpScreenEvent event,
+    Emitter<AuthState> emit,
+  ) async {
+    _appRouter.replace(const SignUpScreenRoute());
   }
 }

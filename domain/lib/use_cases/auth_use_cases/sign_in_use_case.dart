@@ -9,7 +9,7 @@ class SignInUseCase extends FutureUseCase<AppUser, SignInParams> {
   }) : _authRepository = authRepository;
 
   @override
-  Future<AppUser> execute(SignInParams params) async {
+  Future<AppUser> execute(SignInParams params) {
     return _authRepository.signIn(
       email: params.email,
       password: params.password,

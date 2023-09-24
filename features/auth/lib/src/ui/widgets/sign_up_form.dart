@@ -30,12 +30,12 @@ class _SignUpFormState extends State<SignUpForm> {
 
   @override
   Widget build(BuildContext context) {
-    final AuthBloc bloc = BlocProvider.of(context);
-    final MediaQueryData mediaQuery = MediaQuery.of(context);
+    final AuthBloc bloc = BlocProvider.of<AuthBloc>(context);
+    final Size size = MediaQuery.sizeOf(context);
 
     return Container(
-      height: mediaQuery.size.height / AppScale.scaleOne5,
-      width: mediaQuery.size.width / AppScale.scaleOne2,
+      height: size.height / AppScale.scaleOne5,
+      width: size.width / AppScale.scaleOne2,
       decoration: BoxDecoration(
         color: AppColors.white,
         borderRadius: BorderRadius.circular(
@@ -46,9 +46,11 @@ class _SignUpFormState extends State<SignUpForm> {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
           const SizedBox(height: AppSize.size25),
-          const Text(
+          Text(
             AppString.pleaseSignUpInApp,
-            style: AppTextTheme.font18Grey,
+            style: AppTextTheme.font18.copyWith(
+              color: AppColors.lightGrey,
+            ),
           ),
           const SizedBox(height: AppSize.size25),
           Padding(
@@ -61,13 +63,8 @@ class _SignUpFormState extends State<SignUpForm> {
                 children: <Widget>[
                   AppTextField(
                     controller: nameController,
-                    validator: (value) {
-                      if (value!.length < 5) {
-                        return AppString.invalidNameFormat;
-                      } else {
-                        return null;
-                      }
-                    },
+                    validator: (String? value) =>
+                        FieldValidator.nameValidator(value),
                     labelText: AppString.name,
                     obscureText: false,
                     icon: const Icon(Icons.person_outline),
@@ -75,14 +72,8 @@ class _SignUpFormState extends State<SignUpForm> {
                   const SizedBox(height: AppSize.size20),
                   AppTextField(
                     controller: emailController,
-                    validator: (value) {
-                      if (value!.length < 5 ||
-                          !value.contains('@') ||
-                          !value.contains('.')) {
-                        return AppString.invalidEmailFormat;
-                      }
-                      return null;
-                    },
+                    validator: (String? value) =>
+                        FieldValidator.emailValidator(value),
                     labelText: AppString.emailAddress,
                     obscureText: false,
                     icon: const Icon(Icons.email_outlined),
@@ -90,13 +81,8 @@ class _SignUpFormState extends State<SignUpForm> {
                   const SizedBox(height: AppSize.size20),
                   AppTextField(
                     controller: passwordController,
-                    validator: (value) {
-                      if (value!.length < 6) {
-                        return AppString.invalidPassword;
-                      } else {
-                        return null;
-                      }
-                    },
+                    validator: (String? value) =>
+                        FieldValidator.passwordValidator(value),
                     helperText: AppString.helperTextForPassword,
                     labelText: AppString.password,
                     obscureText: true,
@@ -126,7 +112,9 @@ class _SignUpFormState extends State<SignUpForm> {
                       width: AppSize.size150,
                       height: AppSize.size50,
                       buttonText: AppString.signUp,
-                      textStyle: AppTextTheme.font22WhiteBold,
+                      textStyle: AppTextTheme.font22Bold.copyWith(
+                        color: AppColors.white,
+                      ),
                       onTap: () {
                         if (_formKey.currentState!.validate()) {
                           bloc.add(

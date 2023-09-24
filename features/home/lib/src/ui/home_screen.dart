@@ -22,9 +22,11 @@ class HomeScreen extends StatelessWidget {
       listener: (_, MainPageState state) {
         if (!state.isInternetConnection) {
           Flushbar(
-            messageText: const Text(
+            messageText: Text(
               AppString.isNotInternet,
-              style: AppTextTheme.font18Red,
+              style: AppTextTheme.font18.copyWith(
+                color: AppColors.red,
+              ),
             ),
             flushbarPosition: FlushbarPosition.TOP,
             padding: const EdgeInsets.all(AppPadding.padding20),

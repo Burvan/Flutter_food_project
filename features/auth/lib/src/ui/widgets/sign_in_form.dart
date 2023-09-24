@@ -6,7 +6,6 @@ import 'package:auth/src/ui/widgets/offer_another_screen.dart';
 import 'package:core/core.dart';
 import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
-import 'package:navigation/navigation.dart';
 
 class SignInForm extends StatefulWidget {
   const SignInForm({super.key});
@@ -29,11 +28,11 @@ class _SignInFormState extends State<SignInForm> {
 
   @override
   Widget build(BuildContext context) {
-    final AuthBloc bloc = BlocProvider.of(context);
-    final MediaQueryData mediaQuery = MediaQuery.of(context);
+    final AuthBloc bloc = BlocProvider.of<AuthBloc>(context);
+    final Size size = MediaQuery.sizeOf(context);
 
     return Container(
-      width: mediaQuery.size.width / AppScale.scaleOne2,
+      width: size.width / AppScale.scaleOne2,
       decoration: BoxDecoration(
         color: AppColors.white,
         borderRadius: BorderRadius.circular(
@@ -49,9 +48,11 @@ class _SignInFormState extends State<SignInForm> {
             style: AppTextTheme.font32Bold,
           ),
           const SizedBox(height: AppSize.size10),
-          const Text(
+          Text(
             AppString.pleaseLogin,
-            style: AppTextTheme.font18Grey,
+            style: AppTextTheme.font18.copyWith(
+              color: AppColors.lightGrey,
+            ),
           ),
           const SizedBox(height: AppSize.size20),
           Padding(
@@ -64,14 +65,8 @@ class _SignInFormState extends State<SignInForm> {
                 children: <Widget>[
                   AppTextField(
                     controller: emailController,
-                    validator: (value) {
-                      if (value!.length < 5 ||
-                          !value.contains('@') ||
-                          !value.contains('.')) {
-                        return AppString.invalidEmailFormat;
-                      }
-                      return null;
-                    },
+                    validator: (String? value) =>
+                        FieldValidator.emailValidator(value),
                     labelText: AppString.emailAddress,
                     obscureText: false,
                     icon: const Icon(Icons.email_outlined),
@@ -79,13 +74,8 @@ class _SignInFormState extends State<SignInForm> {
                   const SizedBox(height: AppSize.size20),
                   AppTextField(
                     controller: passwordController,
-                    validator: (value) {
-                      if (value!.length < 6) {
-                        return AppString.invalidPassword;
-                      } else {
-                        return null;
-                      }
-                    },
+                    validator: (String? value) =>
+                        FieldValidator.passwordValidator(value),
                     labelText: AppString.password,
                     obscureText: true,
                     icon: const Icon(Icons.password),
@@ -114,7 +104,9 @@ class _SignInFormState extends State<SignInForm> {
                         width: AppSize.size150,
                         height: AppSize.size50,
                         buttonText: AppString.signIn,
-                        textStyle: AppTextTheme.font22WhiteBold,
+                        textStyle: AppTextTheme.font22Bold.copyWith(
+                          color: AppColors.white,
+                        ),
                         onTap: () {
                           if (_formKey.currentState!.validate()) {
                             bloc.add(
@@ -136,14 +128,11 @@ class _SignInFormState extends State<SignInForm> {
                       const SignInUsingGoogleAccEvent(),
                     ),
                   ),
-                  const SizedBox(height: AppSize.size10),
                   OfferAnotherScreen(
                     question: AppString.noAccount,
                     buttonText: AppString.signUp,
                     onPressed: () {
-                      context.replaceRoute(
-                        const SignUpScreenRoute(),
-                      );
+                      bloc.add(const NavigateToSignUpScreenEvent());
                     },
                   ),
                 ],

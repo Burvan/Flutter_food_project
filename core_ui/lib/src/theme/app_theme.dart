@@ -18,21 +18,27 @@ class AppTheme {
       ),
       textButtonTheme: const TextButtonThemeData(
         style: ButtonStyle(
-          overlayColor: MaterialStatePropertyAll(AppColors.lightPink),
+          overlayColor: MaterialStatePropertyAll(
+            AppColors.lightPink,
+          ),
         ),
       ),
       textSelectionTheme: const TextSelectionThemeData(
         cursorColor: AppColors.gentlyPink,
       ),
-      inputDecorationTheme: const InputDecorationTheme(
-        focusedBorder: UnderlineInputBorder(
+      inputDecorationTheme: InputDecorationTheme(
+        focusedBorder: const UnderlineInputBorder(
           borderSide: BorderSide(
             color: AppColors.gentlyPink,
           ),
         ),
         suffixIconColor: AppColors.gentlyPink,
-        labelStyle: AppTextTheme.font16Pink,
-        helperStyle: AppTextTheme.font12SkyBlue,
+        labelStyle: AppTextTheme.font16.copyWith(
+          color: AppColors.gentlyPink,
+        ),
+        helperStyle: AppTextTheme.font12.copyWith(
+          color: AppColors.skyBlue,
+        ),
       ),
       elevatedButtonTheme: const ElevatedButtonThemeData(
         style: ButtonStyle(

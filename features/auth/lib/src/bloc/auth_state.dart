@@ -5,10 +5,11 @@ class AuthState {
   final bool isLogged;
   final AuthFormState formState;
 
-  AuthState(
-      {required this.user,
-      required this.isLogged,
-      required this.formState});
+  AuthState({
+    required this.user,
+    required this.isLogged,
+    required this.formState,
+  });
 
   AuthState.empty()
       : user = const AppUser(

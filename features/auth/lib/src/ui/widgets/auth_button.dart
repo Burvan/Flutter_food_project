@@ -2,20 +2,22 @@ import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
 
 class AuthButton extends StatelessWidget {
-  final double width;
-  final double height;
-  final String buttonText;
+  final double _width;
+  final double _height;
+  final String _buttonText;
   final void Function()? onTap;
   final TextStyle? textStyle;
 
   const AuthButton({
-    required this.width,
-    required this.height,
-    required this.buttonText,
+    required double width,
+    required double height,
+    required String buttonText,
     required this.onTap,
     required this.textStyle,
     super.key,
-  });
+  })  : _width = width,
+        _height = height,
+        _buttonText = buttonText;
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +25,7 @@ class AuthButton extends StatelessWidget {
       children: <Widget>[
         Container(
           alignment: Alignment.center,
-          width: width,
+          width: _width,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(
               AppBorderRadius.borderRadius25,
@@ -42,7 +44,7 @@ class AuthButton extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.all(AppPadding.padding12),
             child: Text(
-              buttonText,
+              _buttonText,
               style: textStyle,
             ),
           ),
@@ -55,8 +57,8 @@ class AuthButton extends StatelessWidget {
               AppBorderRadius.borderRadius25,
             ),
             child: SizedBox(
-              width: width,
-              height: height,
+              width: _width,
+              height: _height,
             ),
           ),
         ),

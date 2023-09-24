@@ -39,4 +39,15 @@ class AppString {
   static const String pleaseSignUpInApp = 'Please Sign Up in our application';
   static const String alreadyHaveAnAccount = 'Already have an Account?';
   static const String helperTextForPassword = 'At least 6 characters';
+  ///Box names
+  static const String userBoxName = 'user';
+  static const String dishesBoxName = 'dishes';
+  static const String cartBoxName = 'cart';
+  static const String themeBoxName = 'theme';
+  static const String fontSizeBoxName = 'fontSize';
+  ///Hive keys
+  static const String themeKey = 'isDark';
+  static const String fontSizeKey = 'fontScale';
+
+
 }

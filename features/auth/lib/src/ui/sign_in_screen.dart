@@ -10,7 +10,7 @@ class SignInScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final AuthBloc bloc = BlocProvider.of(context);
+    final AuthBloc bloc = BlocProvider.of<AuthBloc>(context);
     final MediaQueryData mediaQuery = MediaQuery.of(context);
 
     return Scaffold(

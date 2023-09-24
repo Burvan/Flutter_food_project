@@ -1,24 +1,26 @@
 import 'package:core_ui/core_ui.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 class AppTitle extends StatelessWidget {
   const AppTitle({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final MediaQueryData mediaQuery = MediaQuery.of(context);
+    final Size size = MediaQuery.sizeOf(context);
 
     return Column(
       children: <Widget>[
         SizedBox(
-          height: mediaQuery.size.height / AppSize.size5,
+          height: size.height / AppSize.size5,
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            const Text(
+            Text(
               AppString.signInTitle,
-              style: AppTextTheme.font28WhiteBold,
+              style: AppTextTheme.font28Bold.copyWith(
+                color: AppColors.white,
+              ),
             ),
             Padding(
               padding: const EdgeInsets.only(top: AppPadding.padding12),
@@ -42,7 +44,6 @@ class AppTitle extends StatelessWidget {
                     color: AppColors.white,
                     width: AppSize.size12,
                   ),
-
                 ],
               ),
             ),

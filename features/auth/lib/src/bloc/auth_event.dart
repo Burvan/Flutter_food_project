@@ -45,3 +45,7 @@ class NavigateToHomeScreenEvent extends AuthEvent {
 class NavigateToSignInScreenEvent extends AuthEvent {
   const NavigateToSignInScreenEvent();
 }
+
+class NavigateToSignUpScreenEvent extends AuthEvent {
+  const NavigateToSignUpScreenEvent();
+}

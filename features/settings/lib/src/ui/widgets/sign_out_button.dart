@@ -3,8 +3,8 @@ import 'package:core/core.dart';
 import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
 
-class SignOut extends StatelessWidget {
-  const SignOut({super.key});
+class SignOutButton extends StatelessWidget {
+  const SignOutButton({super.key});
 
   @override
   Widget build(BuildContext context) {
