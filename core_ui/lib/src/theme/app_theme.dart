@@ -1,3 +1,4 @@
+import 'package:core_ui/core_ui.dart';
 import 'package:core_ui/src/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 
@@ -15,9 +16,29 @@ class AppTheme {
       tabBarTheme: const TabBarTheme(
         indicatorColor: AppColors.brightPink,
       ),
+      textButtonTheme: const TextButtonThemeData(
+        style: ButtonStyle(
+          overlayColor: MaterialStatePropertyAll(AppColors.lightPink),
+        ),
+      ),
+      textSelectionTheme: const TextSelectionThemeData(
+        cursorColor: AppColors.gentlyPink,
+      ),
+      inputDecorationTheme: const InputDecorationTheme(
+        focusedBorder: UnderlineInputBorder(
+          borderSide: BorderSide(
+            color: AppColors.gentlyPink,
+          ),
+        ),
+        suffixIconColor: AppColors.gentlyPink,
+        labelStyle: AppTextTheme.font16Pink,
+        helperStyle: AppTextTheme.font12SkyBlue,
+      ),
       elevatedButtonTheme: const ElevatedButtonThemeData(
         style: ButtonStyle(
-          backgroundColor: MaterialStatePropertyAll(AppColors.brightPink),
+          backgroundColor: MaterialStatePropertyAll(
+            AppColors.brightPink,
+          ),
         ),
       ),
       switchTheme: const SwitchThemeData(
@@ -34,9 +55,10 @@ class AppTheme {
         circularTrackColor: AppColors.brightPink,
       ),
       bottomNavigationBarTheme: const BottomNavigationBarThemeData(
-          backgroundColor: AppColors.white,
-          unselectedItemColor: AppColors.lightGrey,
-          selectedItemColor: AppColors.gentlyPink),
+        backgroundColor: AppColors.white,
+        unselectedItemColor: AppColors.lightGrey,
+        selectedItemColor: AppColors.gentlyPink,
+      ),
     );
   }
 
@@ -73,9 +95,10 @@ class AppTheme {
         circularTrackColor: AppColors.indigo,
       ),
       bottomNavigationBarTheme: const BottomNavigationBarThemeData(
-          backgroundColor: AppColors.darkGrey,
-          unselectedItemColor: AppColors.white,
-          selectedItemColor: AppColors.skyBlue),
+        backgroundColor: AppColors.darkGrey,
+        unselectedItemColor: AppColors.white,
+        selectedItemColor: AppColors.skyBlue,
+      ),
     );
   }
 }

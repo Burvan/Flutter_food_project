@@ -1,3 +1,4 @@
+import 'package:auth/auth.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
@@ -11,10 +12,15 @@ part 'app_router.gr.dart';
 @MaterialAutoRouter(
   routes: <AutoRoute>[
     AutoRoute(
+      page: SignInScreen,
+      initial: true,
+    ),
+    AutoRoute(page: SignUpScreen),
+    AutoRoute(
       page: HomePage,
       path: '/',
       children: [
-        AutoRoute(page: HomeScreen, initial: true),
+        AutoRoute(page: HomeScreen, path: ''),
         AutoRoute(page: CartScreen),
         AutoRoute(page: OrderHistoryScreen),
         AutoRoute(page: SettingsScreen),

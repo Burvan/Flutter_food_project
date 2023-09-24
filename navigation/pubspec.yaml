@@ -16,6 +16,8 @@ dependencies:
     path: ../core_ui
   domain:
     path: ../domain
+  auth:
+    path: ../features/auth
   main_page:
     path: ../features/home
   cart:
