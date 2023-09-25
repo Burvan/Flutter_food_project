@@ -45,9 +45,11 @@ class AppString {
   static const String cartBoxName = 'cart';
   static const String themeBoxName = 'theme';
   static const String fontSizeBoxName = 'fontSize';
+  static const String orderBoxName = 'orders';
   ///Hive keys
   static const String themeKey = 'isDark';
   static const String fontSizeKey = 'fontScale';
-
-
+  ///Firebase collections
+  static const String userCollection = 'users';
+  static const String orderCollection = 'orders';
 }

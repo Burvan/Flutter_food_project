@@ -1,10 +1,8 @@
 import 'package:core/core.dart';
 import 'package:core_ui/core_ui.dart';
 import 'package:data/data.dart';
-import 'package:data/entities/cart/cart_dish_entity.dart';
-import 'package:data/entities/dishes/entities/dish_entity.dart';
-import 'package:data/entities/user/user_entity.dart';
 import 'package:data/providers/auth_provider.dart';
+import 'package:data/repositories/order_repository_impl.dart';
 import 'package:data/repositories/auth_repository_impl.dart';
 import 'package:data/repositories/user_repository_impl.dart';
 import 'package:data/repositories/cart_repository_impl.dart';
@@ -61,6 +59,9 @@ class DataDI {
     appLocator.registerLazySingleton<Box<double>>(
       () => Hive.box<double>(AppString.fontSizeBoxName),
     );
+    appLocator.registerLazySingleton<Box<OrderEntity>>(
+      () => Hive.box<OrderEntity>(AppString.orderBoxName),
+    );
 
     ///Providers
     appLocator.registerLazySingleton<AuthProvider>(
@@ -81,7 +82,12 @@ class DataDI {
         cartBox: appLocator.get<Box<CartDishEntity>>(),
         themeBox: appLocator.get<Box<String>>(),
         fontSizeBox: appLocator.get<Box<double>>(),
+        orderBox: appLocator.get<Box<OrderEntity>>(),
       ),
+    );
+
+    appLocator.registerLazySingleton<OrderDataProvider>(
+      () => OrderDataProvider(),
     );
 
     ///UseCases
@@ -169,6 +175,18 @@ class DataDI {
       ),
     );
 
+    appLocator.registerLazySingleton<MakeAnOrderUseCase>(
+      () => MakeAnOrderUseCase(
+        orderRepository: appLocator.get<OrderRepository>(),
+      ),
+    );
+
+    appLocator.registerLazySingleton<FetchOrdersUseCase>(
+      () => FetchOrdersUseCase(
+        orderRepository: appLocator.get<OrderRepository>(),
+      ),
+    );
+
     ///Repositories
     appLocator.registerLazySingleton<AuthRepository>(
       () => AuthRepositoryImpl(
@@ -198,6 +216,13 @@ class DataDI {
 
     appLocator.registerLazySingleton<SettingsRepository>(
       () => SettingsRepositoryImpl(
+        hiveProvider: appLocator.get<HiveProvider>(),
+      ),
+    );
+
+    appLocator.registerLazySingleton<OrderRepository>(
+      () => OrderRepositoryImpl(
+        orderDataProvider: appLocator.get<OrderDataProvider>(),
         hiveProvider: appLocator.get<HiveProvider>(),
       ),
     );

@@ -1,7 +1,5 @@
 import 'package:core/core.dart';
-import 'package:data/entities/cart/cart_dish_entity.dart';
-import 'package:data/entities/dishes/entities/dish_entity.dart';
-import 'package:data/entities/user/user_entity.dart';
+import 'package:data/data.dart';
 import 'package:data/mappers/mappers.dart';
 import 'package:core_ui/core_ui.dart';
 import 'package:domain/domain.dart' as domain;
@@ -12,6 +10,7 @@ class HiveProvider {
   final Box<DishEntity> dishBox;
   final Box<String> themeBox;
   final Box<double> fontSizeBox;
+  final Box<OrderEntity> orderBox;
 
   HiveProvider({
     required this.userBox,
@@ -19,6 +18,7 @@ class HiveProvider {
     required this.cartBox,
     required this.themeBox,
     required this.fontSizeBox,
+    required this.orderBox,
   });
 
   ///Auth
@@ -112,5 +112,20 @@ class HiveProvider {
 
   Future<void> setFontSize(double textScale) async {
     return fontSizeBox.put(AppString.fontSizeKey, textScale);
+  }
+
+  ///Order history
+  Future<void> saveOrdersToCache(List<OrderEntity> orders) async {
+    await orderBox.clear();
+    await orderBox.addAll(orders);
+  }
+
+  Future<List<OrderEntity>> fetchOrdersFromCache() async {
+    final List<OrderEntity> orders = orderBox.values.toList();
+    return orders;
+  }
+
+  Future<void> addNewOrderToCache(OrderEntity order) async {
+    await orderBox.add(order);
   }
 }

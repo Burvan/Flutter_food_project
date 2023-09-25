@@ -17,7 +17,14 @@ class CartDishEntity {
   });
 
   List<Object?> get props => <Object?>[
-    dish,
-    quantity,
-  ];
+        dish,
+        quantity,
+      ];
+
+  factory CartDishEntity.fromJson(Map<String, dynamic> json) {
+    return CartDishEntity(
+      dish: DishEntity.fromJson(json['dish']),
+      quantity: (json['quantity'] as num).toInt(),
+    );
+  }
 }

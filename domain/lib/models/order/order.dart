@@ -2,12 +2,12 @@ import 'package:domain/domain.dart';
 
 class Order {
   final String id;
-  final DateTime datetime;
+  final DateTime dateTime;
   final Cart cart;
 
   const Order({
     required this.id,
-    required this.datetime,
+    required this.dateTime,
     required this.cart,
   });
 
@@ -18,14 +18,14 @@ class Order {
   }) {
     return Order(
       id: id ?? this.id,
-      datetime: datetime ?? this.datetime,
+      dateTime: dateTime ?? this.dateTime,
       cart: cart ?? this.cart,
     );
   }
 
   List<Object?> get props => <Object?> [
     id,
-    datetime,
+    dateTime,
     cart,
   ];
 }

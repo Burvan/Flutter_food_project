@@ -1,11 +1,13 @@
 import 'package:core/core.dart';
-import 'package:data/entities/user/user_entity.dart';
+import 'package:core_ui/core_ui.dart';
+import 'package:data/data.dart';
+
 
 class AuthProvider {
   final FirebaseAuth _firebaseAuth;
   final GoogleSignIn _googleSignIn;
   final CollectionReference _collection =
-      FirebaseFirestore.instance.collection('users');
+      FirebaseFirestore.instance.collection(AppString.userCollection);
 
   AuthProvider({
     required FirebaseAuth firebaseAuth,
